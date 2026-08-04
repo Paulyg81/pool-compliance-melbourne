@@ -1,0 +1,51 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Breadcrumbs from "../components/Breadcrumbs.astro";
+import QuoteForm from "../components/QuoteForm.astro";
+import PhoneIcon from "../icons/PhoneIcon.astro";
+import MailIcon from "../icons/MailIcon.astro";
+import ClockIcon from "../icons/ClockIcon.astro";
+import { PHONE_NUMBER, PHONE_NUMBER_TEL, EMAIL, BUSINESS_HOURS } from "../config";
+---
+<Layout
+  title="Contact Pool Compliance Melbourne | Book Now"
+  description="Book a pool or spa barrier inspection across Melbourne. Call, email, or send your details and we'll call you back to confirm a time within 48 hours."
+  path="/contact/"
+>
+  <Breadcrumbs items={[{ name: "Contact", path: "/contact/" }]} />
+
+  <div class="mx-auto max-w-6xl px-4 py-10">
+    <h1 class="text-3xl md:text-4xl font-extrabold text-navy-900 mb-4">Contact Pool Compliance Melbourne</h1>
+    <p class="text-lg text-navy-600 max-w-2xl mb-10">
+      Ready to book, or have a question first? Call us directly or send your details below and we'll call you back.
+    </p>
+
+    <div class="grid lg:grid-cols-5 gap-10">
+      <div class="lg:col-span-2 space-y-6">
+        <div class="rounded-xl border border-navy-100 p-6">
+          <PhoneIcon class="w-6 h-6 text-accent-500 mb-3" />
+          <p class="font-bold text-navy-900 mb-1">Call us</p>
+          <a href={`tel:${PHONE_NUMBER_TEL}`} class="text-xl font-bold text-accent-600 hover:text-accent-700">{PHONE_NUMBER}</a>
+          <p class="text-sm text-navy-500 mt-2">Please note: calls may be recorded for training and quality purposes.</p>
+        </div>
+        <div class="rounded-xl border border-navy-100 p-6">
+          <MailIcon class="w-6 h-6 text-accent-500 mb-3" />
+          <p class="font-bold text-navy-900 mb-1">Email us</p>
+          <a href={`mailto:${EMAIL}`} class="text-accent-600 hover:text-accent-700 font-medium">{EMAIL}</a>
+        </div>
+        <div class="rounded-xl border border-navy-100 p-6">
+          <ClockIcon class="w-6 h-6 text-accent-500 mb-3" />
+          <p class="font-bold text-navy-900 mb-1">Hours</p>
+          <p class="text-navy-600">{BUSINESS_HOURS}</p>
+          <p class="text-sm text-navy-500 mt-2">Inspections are typically scheduled within 48 hours of booking.</p>
+        </div>
+      </div>
+
+      <div class="lg:col-span-3">
+        <div id="quote-form">
+          <QuoteForm heading="Send your details" subtext="Tell us about your pool or spa and we'll call you back to confirm a time." />
+        </div>
+      </div>
+    </div>
+  </div>
+</Layout>

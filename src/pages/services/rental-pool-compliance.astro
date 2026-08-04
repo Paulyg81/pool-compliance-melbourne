@@ -1,0 +1,142 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Breadcrumbs from "../../components/Breadcrumbs.astro";
+import QuoteForm from "../../components/QuoteForm.astro";
+import FAQ from "../../components/FAQ.astro";
+import CTA from "../../components/CTA.astro";
+import { serviceSchema } from "../../lib/schema";
+import { SITE_URL, PRICE, SUBURBS, SERVICES, GUARANTEE_FULL } from "../../config";
+
+const service = SERVICES.find((s) => s.slug === "rental-pool-compliance")!;
+const url = `${SITE_URL}/services/${service.slug}/`;
+const linkedSuburbs = [
+  SUBURBS.find((s) => s.slug === "cranbourne")!,
+  SUBURBS.find((s) => s.slug === "narre-warren")!,
+  SUBURBS.find((s) => s.slug === "point-cook")!,
+  SUBURBS.find((s) => s.slug === "tarneit")!,
+  SUBURBS.find((s) => s.slug === "werribee")!,
+  SUBURBS.find((s) => s.slug === "frankston")!,
+];
+
+const faqs = [
+  {
+    question: "Who is responsible for pool compliance on a rental property — landlord or tenant?",
+    answer:
+      "The property owner. Registration, certification, and the four-year re-inspection cycle are all the owner's legal obligation, regardless of who's living in the property or what the lease says.",
+  },
+  {
+    question: "Can I require the tenant to cover the cost of the inspection?",
+    answer:
+      "Generally no — the compliance obligation itself sits with the owner and can't be shifted to the tenant through a lease clause. Lease terms can reasonably ask tenants to keep the barrier area clear and report issues, but the underlying responsibility remains with you.",
+  },
+  {
+    question: "Do I need to give the tenant notice before an inspection?",
+    answer:
+      "Yes — the same standard entry notice requirements that apply to any property access apply here. We can work with your property manager to arrange appropriate timing.",
+  },
+  {
+    question: "What if a tenant has placed furniture or plants near the fence that causes a fail?",
+    answer:
+      "It's a common and easily fixed issue — usually just relocating the item away from the non-climbable zone. As the owner, arranging that fix is your responsibility, though it's often a quick conversation with the tenant or property manager.",
+  },
+  {
+    question: "Do you offer bulk booking across a rental portfolio?",
+    answer:
+      "Yes — get in touch and we can help coordinate scheduling across multiple properties, with each still charged at our standard flat fee per property.",
+  },
+];
+---
+<Layout
+  title={service.metaTitle}
+  description={service.metaDescription}
+  path={`/services/${service.slug}/`}
+  schema={[serviceSchema(service, url)]}
+>
+  <Breadcrumbs items={[{ name: "Services", path: "/services/" }, { name: service.name, path: `/services/${service.slug}/` }]} />
+
+  <div class="mx-auto max-w-6xl px-4 py-10">
+    <h1 class="text-3xl md:text-4xl font-extrabold text-navy-900 mb-4 max-w-3xl">{service.h1}</h1>
+    <p class="text-lg text-navy-600 max-w-2xl mb-8">{service.summary}</p>
+
+    <div class="prose-content max-w-3xl">
+      <p>
+        Landlords and property managers carry exactly the same pool and spa barrier compliance obligations as
+        owner-occupiers — there's no lighter-touch version of the rules for investment properties. Registration,
+        the Form 23 Certificate of Barrier Compliance, and the four-year re-inspection cycle all apply, and
+        responsibility for all of it sits with the property owner rather than the tenant, throughout the tenancy.
+      </p>
+
+      <h2>Why rental properties need particular attention</h2>
+      <p>
+        A few patterns come up more often in tenanted properties than in owner-occupied homes. Tenants sometimes add
+        garden features, pot plants or outdoor furniture without realising they need to stay clear of the barrier's
+        non-climbable zone. Gate hardware issues that an owner-occupier might notice and fix immediately can go
+        unreported. And for landlords managing several properties, each on its own four-year certification clock, a
+        missed renewal on one property is easy to lose track of among routine leasing and maintenance tasks.
+      </p>
+
+      <h2>What the inspection covers</h2>
+      <p>
+        The assessment is the same thorough check as any standard inspection: fence and gate height (minimum
+        1200mm), gaps under and within the fence, the non-climbable zone around the barrier, and gate self-closing
+        and self-latching function. We coordinate directly with property managers where needed to arrange access and
+        tenant notice.
+      </p>
+    </div>
+
+    <CTA
+      heading={`Keep your rental compliant — ${PRICE} flat`}
+      subtext="We track your four-year renewal automatically so nothing slips between lease cycles."
+    />
+
+    <div class="prose-content max-w-3xl">
+      <h2>Building compliance into routine property management</h2>
+      <p>
+        A few practical habits make ongoing compliance considerably easier across a rental property or portfolio:
+        record your Form 23 issue date in the property file and set a reminder well ahead of the four-year expiry;
+        include a basic visual barrier check as part of routine property inspections; and confirm compliance status
+        at every change of tenancy, which is a natural checkpoint for catching anything that's changed. Read our full
+        breakdown in the <a href="/guides/landlord-pool-compliance-vic/">landlord compliance guide</a>.
+      </p>
+
+      <h2>The cost of letting it lapse</h2>
+      <p>
+        Non-compliance penalties can exceed $1,600, and there's no reduced enforcement for rental properties —
+        councils follow up on investment properties the same as any other. A compliance issue discovered partway
+        through a tenancy, or right before a sale, is more disruptive to resolve under time pressure than one caught
+        as part of routine, proactive management.
+      </p>
+
+      <h2>Pricing</h2>
+      <p>
+        Rental pool compliance inspections are charged at the same {PRICE} flat fee as any standard inspection.
+        {GUARANTEE_FULL} See our <a href="/pricing/">pricing page</a> for full details, and get in touch about
+        coordinating multiple properties across a portfolio.
+      </p>
+
+      <h2>Related guides</h2>
+      <ul>
+        <li><a href="/guides/landlord-pool-compliance-vic/">Landlord pool compliance in Victoria</a></li>
+        <li><a href="/guides/four-year-reinspection-cycle/">The four-year re-inspection cycle explained</a></li>
+        <li><a href="/guides/register-pool-with-council/">How to register a pool with council</a></li>
+      </ul>
+
+      <h2>Available across Melbourne</h2>
+      <p>We inspect rental properties across the metro area, including:</p>
+      <ul class="columns-2 sm:columns-3">
+        {linkedSuburbs.map((s) => (
+          <li><a href={`/locations/${s.slug}/`}>Rental pool compliance {s.name}</a></li>
+        ))}
+      </ul>
+      <p><a href="/locations/">See all service areas &rarr;</a></p>
+    </div>
+
+    <div id="quote-form" class="max-w-3xl mx-auto my-12">
+      <QuoteForm />
+    </div>
+
+    <div class="max-w-3xl mx-auto">
+      <FAQ faqs={faqs} heading="Frequently asked questions about rental pool compliance" />
+    </div>
+  </div>
+</Layout>

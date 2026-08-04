@@ -1,0 +1,233 @@
+---
+import Layout from "../layouts/Layout.astro";
+import QuoteForm from "../components/QuoteForm.astro";
+import FAQ from "../components/FAQ.astro";
+import CTA from "../components/CTA.astro";
+import CheckIcon from "../icons/CheckIcon.astro";
+import ClockIcon from "../icons/ClockIcon.astro";
+import ShieldIcon from "../icons/ShieldIcon.astro";
+import PhoneIcon from "../icons/PhoneIcon.astro";
+import { PHONE_NUMBER, PHONE_NUMBER_TEL, PRICE, SERVICES, SUBURBS, GUARANTEE_SHORT, GUARANTEE_FULL, RE_INSPECTION_FEE, RE_INSPECTION_WINDOW_DAYS } from "../config";
+
+const faqs = [
+  {
+    question: "How much does a pool inspection cost in Melbourne?",
+    answer:
+      `Our flat fee is $240 for a standard residential pool or spa barrier inspection. That covers the full inspection and your Form 23 Certificate of Barrier Compliance if your barrier passes. ${GUARANTEE_FULL}`,
+  },
+  {
+    question: "What does a pool barrier inspection actually check?",
+    answer:
+      "An inspector assesses your full barrier as a system: fence and gate height (minimum 1200mm), gaps under and within the fence, the non-climbable zone around the outside of the barrier, and whether every gate self-closes and self-latches reliably from any position.",
+  },
+  {
+    question: "How quickly can I get booked in?",
+    answer:
+      "Most inspections across Melbourne are scheduled within 48 hours of booking. Enter your suburb in the quote form below and we'll confirm a time that suits you.",
+  },
+  {
+    question: "What happens if my barrier fails the inspection?",
+    answer:
+      `About one in three barriers fail their first inspection, so it's genuinely common. You'll get a clear list of what needs fixing — usually straightforward things like a gate adjustment or moving pot plants away from the fence line. ${GUARANTEE_FULL}`,
+  },
+  {
+    question: "What if my pool fails the re-inspection too?",
+    answer:
+      `Most properties pass on the second visit once the original issues are fixed. If it doesn't, further re-inspections are ${RE_INSPECTION_FEE} each. The free re-check only applies to your first re-inspection, booked within ${RE_INSPECTION_WINDOW_DAYS} days of the original visit.`,
+  },
+  {
+    question: "What is a Form 23, and what do I do with it?",
+    answer:
+      "A Form 23 Certificate of Barrier Compliance is the official document confirming your pool or spa barrier meets the Victorian safety standard. Once issued, you have 30 days to lodge it with your local council. We track this deadline and send you a reminder so it doesn't slip.",
+  },
+  {
+    question: "How often does my pool need to be re-inspected?",
+    answer:
+      "Every four years, without exception. This applies to every registered pool and spa in Victoria, regardless of the barrier's age or condition. We track your certificate's expiry date and remind you well ahead of your next required inspection.",
+  },
+  {
+    question: "Do spas need to be inspected too?",
+    answer:
+      "Yes. Any spa holding more than 300mm of water — fixed or portable — is treated the same as a swimming pool under Victorian barrier requirements and needs its own registration and Form 23.",
+  },
+  {
+    question: "What happens if I don't register or certify my pool?",
+    answer:
+      "Non-compliance penalties for pool and spa owners in Victoria can exceed $1,600. Councils actively monitor registration and certification status, so it's considerably cheaper and less stressful to stay ahead of the four-year cycle than to let it lapse.",
+  },
+  {
+    question: "Are you the company that actually inspects my pool?",
+    answer:
+      "No — Pool Compliance Melbourne is a booking service operated by CertCycle. We dispatch independent, BPC-registered pool safety inspectors to carry out every inspection. This keeps our process consistent and our pricing transparent, regardless of which inspector attends.",
+  },
+  {
+    question: "Which suburbs do you cover?",
+    answer:
+      "We dispatch inspectors right across greater Melbourne, from Bayside and the inner east through to the outer south-east, west and Mornington Peninsula. See our full list of service areas below, or just enter your suburb in the quote form.",
+  },
+];
+---
+<Layout
+  title="Pool Inspections Melbourne | Form 23 Certificates"
+  description="BPC-registered pool & spa barrier inspections across Melbourne. $240 flat, Form 23 on pass, one free re-inspection included. 48-hour scheduling."
+  path="/"
+  schema={[]}
+>
+  <section class="bg-navy-950 text-white">
+    <div class="mx-auto max-w-6xl px-4 py-14 md:py-20 grid lg:grid-cols-2 gap-10 items-center">
+      <div>
+        <h1 class="font-extrabold leading-tight mb-5">
+          <span class="block text-3xl sm:text-4xl md:text-5xl">Pool Inspections Melbourne</span>
+          <span class="block text-lg sm:text-xl md:text-2xl font-bold text-accent-400 mt-2">Form 23 Compliance Certificates</span>
+        </h1>
+        <p class="text-lg text-navy-100 mb-8 max-w-xl">
+          Book a BPC-registered inspector for your pool or spa barrier. Flat {PRICE} fee, Form 23 Certificate of Barrier Compliance issued on the spot if you pass, and one free re-inspection if you don't.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 mb-8">
+          <a
+            href={`tel:${PHONE_NUMBER_TEL}`}
+            class="inline-flex items-center justify-center gap-2 rounded-lg bg-accent-500 hover:bg-accent-600 text-white font-bold px-6 py-3.5 transition-colors"
+          >
+            <PhoneIcon class="w-5 h-5" /> Call {PHONE_NUMBER}
+          </a>
+          <a
+            href="#quote-form"
+            class="inline-flex items-center justify-center gap-2 rounded-lg border-2 border-white/30 hover:border-white/60 text-white font-bold px-6 py-3.5 transition-colors"
+          >
+            Get a free quote
+          </a>
+        </div>
+        <ul class="grid sm:grid-cols-2 gap-3 text-sm">
+          <li class="flex items-center gap-2 text-navy-100"><CheckIcon class="w-4 h-4 text-accent-400 shrink-0" /> BPC-registered inspectors</li>
+          <li class="flex items-center gap-2 text-navy-100"><CheckIcon class="w-4 h-4 text-accent-400 shrink-0" /> Form 23 issued on the spot</li>
+          <li class="flex items-center gap-2 text-navy-100"><CheckIcon class="w-4 h-4 text-accent-400 shrink-0" /> {GUARANTEE_SHORT}</li>
+          <li class="flex items-center gap-2 text-navy-100"><CheckIcon class="w-4 h-4 text-accent-400 shrink-0" /> 48-hour scheduling</li>
+        </ul>
+      </div>
+      <div class="hidden lg:block">
+        <div class="rounded-2xl bg-navy-900 border border-navy-800 p-8">
+          <div class="grid grid-cols-3 gap-6 text-center">
+            <div>
+              <ShieldIcon class="w-8 h-8 mx-auto text-accent-400 mb-2" />
+              <p class="font-bold text-white text-2xl">1 in 3</p>
+              <p class="text-navy-300 text-xs">barriers fail first inspection</p>
+            </div>
+            <div>
+              <ClockIcon class="w-8 h-8 mx-auto text-accent-400 mb-2" />
+              <p class="font-bold text-white text-2xl">4 years</p>
+              <p class="text-navy-300 text-xs">between re-certifications</p>
+            </div>
+            <div>
+              <CheckIcon class="w-8 h-8 mx-auto text-accent-400 mb-2" />
+              <p class="font-bold text-white text-2xl">48 hrs</p>
+              <p class="text-navy-300 text-xs">typical scheduling window</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="mx-auto max-w-6xl px-4 py-12">
+    <div class="prose-content max-w-3xl">
+      <p>
+        If you own a pool or spa in Melbourne, Victorian law requires its safety barrier to be inspected and
+        certified — first when it's registered, and then again every four years for as long as the pool exists.
+        Pool Compliance Melbourne exists to make that process simple: tell us your suburb, we dispatch an
+        independent, BPC-registered pool safety inspector, and you get a clear outcome — a Form 23 Certificate of
+        Barrier Compliance if your barrier passes, or a straightforward list of what needs fixing if it doesn't.
+      </p>
+
+      <h2>What a pool barrier inspection covers</h2>
+      <p>
+        A compliance inspection isn't about your pool's water quality, pump or filtration — it's specifically about
+        the physical barrier that stops unsupervised access, particularly by young children. Your inspector will
+        assess the entire barrier as one connected system, including:
+      </p>
+      <ul>
+        <li><strong>Barrier height</strong> — a minimum of 1200mm above ground level on the outside of the fence, measured at the current ground level rather than however it was when the fence was built.</li>
+        <li><strong>Gaps</strong> — under the fence, between pickets, and anywhere a small child could squeeze through or find a foothold.</li>
+        <li><strong>The non-climbable zone</strong> — the clear area required around the outside of the barrier, free of pot plants, furniture, garden features or anything else that could be used to climb over.</li>
+        <li><strong>Gates</strong> — every gate providing access to the pool area needs to self-close and self-latch reliably from any open position, without being pushed shut.</li>
+      </ul>
+      <p>
+        It's a hands-on, physical inspection. Your inspector walks the full perimeter, measures height and gaps at
+        multiple points, and physically tests every gate — not a desktop review of old paperwork or plans.
+      </p>
+
+      <h2>The four-year re-inspection cycle</h2>
+      <p>
+        A passed inspection isn't a one-off event. Every registered pool and spa barrier in Victoria needs to be
+        re-inspected and re-certified every four years, indefinitely, regardless of how old the pool is or how long
+        the barrier has stood without issue. This isn't red tape for its own sake — barriers drift out of compliance
+        for entirely ordinary reasons: ground levels shift with landscaping, gate hardware wears with age and
+        weather, and established gardens grow into the non-climbable zone over time. The four-year cycle exists
+        because these changes are gradual and easy to miss without a dedicated physical re-inspection.
+      </p>
+      <p>
+        We track your certificate's issue date automatically once you book through us, and send a reminder well
+        ahead of your next renewal — so you hear from us before you hear from council. Read more in our
+        <a href="/guides/four-year-reinspection-cycle/">guide to the four-year cycle</a>.
+      </p>
+    </div>
+
+    <CTA />
+
+    <div class="prose-content max-w-3xl">
+      <h2>Transparent pricing — {PRICE} flat</h2>
+      <p>
+        Our fee is {PRICE} for a standard residential pool or spa barrier inspection, and that's the whole price —
+        not a low headline rate with extras bolted on afterwards. It includes the physical inspection and your Form
+        23 Certificate of Barrier Compliance if your barrier passes. {GUARANTEE_FULL} Many providers charge the full
+        rate again for every re-inspection, which matters given roughly one in three barriers fail their first
+        visit. See the full breakdown on our <a href="/pricing/">pricing page</a>.
+      </p>
+
+      <h2>How booking works</h2>
+      <p>
+        The process is designed to be simple for a pool owner who just wants this handled properly and quickly:
+      </p>
+      <ol>
+        <li><strong>Book online or by phone.</strong> Tell us your suburb and whether it's a pool or spa, and we'll confirm a time.</li>
+        <li><strong>Inspection within 48 hours.</strong> An independent, BPC-registered inspector attends and assesses your full barrier on site.</li>
+        <li><strong>Form 23 on the spot if you pass.</strong> Your certificate is issued the same day, ready to lodge with council.</li>
+        <li><strong>We handle the reminders.</strong> Both the 30-day council lodgement deadline and your four-year renewal date are tracked for you.</li>
+      </ol>
+      <p>
+        If your barrier doesn't pass the first time, you'll get a clear, specific list of what to fix. {GUARANTEE_FULL}
+      </p>
+
+      <h2>Melbourne-wide service area</h2>
+      <p>
+        We dispatch inspectors across greater Melbourne — from Bayside suburbs like Brighton and Beaumaris, through
+        the inner and outer east including Balwyn, Kew, Doncaster and Wheelers Hill, down through Casey and
+        Frankston, out to the Mornington Peninsula, and across Melbourne's west including Point Cook, Tarneit and
+        Werribee. See our <a href="/locations/">full list of service areas</a> for suburb-specific detail on local
+        councils and common barrier issues.
+      </p>
+      <ul class="columns-2 sm:columns-3 gap-4">
+        {SUBURBS.map((s) => (
+          <li><a href={`/locations/${s.slug}/`}>{s.name}</a></li>
+        ))}
+      </ul>
+    </div>
+
+    <div id="quote-form" class="max-w-3xl mx-auto my-12">
+      <QuoteForm />
+    </div>
+
+    <div class="max-w-3xl mx-auto">
+      <FAQ faqs={faqs} />
+    </div>
+
+    <div class="prose-content max-w-3xl">
+      <h2>Our services</h2>
+      <p>Beyond a standard pool barrier inspection, we cover the full range of Victorian compliance needs:</p>
+      <ul>
+        {SERVICES.map((s) => (
+          <li><a href={`/services/${s.slug}/`}>{s.name}</a> — {s.summary}</li>
+        ))}
+      </ul>
+    </div>
+  </div>
+</Layout>

@@ -1,0 +1,147 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Breadcrumbs from "../../components/Breadcrumbs.astro";
+import QuoteForm from "../../components/QuoteForm.astro";
+import FAQ from "../../components/FAQ.astro";
+import CTA from "../../components/CTA.astro";
+import { serviceSchema } from "../../lib/schema";
+import { SITE_URL, PRICE, SUBURBS, SERVICES, GUARANTEE_FULL, RE_INSPECTION_WINDOW_DAYS } from "../../config";
+
+const service = SERVICES.find((s) => s.slug === "pre-sale-pool-inspection")!;
+const url = `${SITE_URL}/services/${service.slug}/`;
+const linkedSuburbs = [
+  SUBURBS.find((s) => s.slug === "brighton")!,
+  SUBURBS.find((s) => s.slug === "balwyn")!,
+  SUBURBS.find((s) => s.slug === "kew")!,
+  SUBURBS.find((s) => s.slug === "glen-waverley")!,
+  SUBURBS.find((s) => s.slug === "mount-eliza")!,
+  SUBURBS.find((s) => s.slug === "berwick")!,
+];
+
+const faqs = [
+  {
+    question: "Do I legally need a Form 23 to sell a house with a pool in Victoria?",
+    answer:
+      "Yes. Vendors are required to provide a valid Certificate of Barrier Compliance to the purchaser as part of selling a property with a pool or spa, and it needs to be current at the time of sale.",
+  },
+  {
+    question: "When should I book a pre-sale inspection?",
+    answer:
+      "As early as possible — ideally as one of the first things you organise once you decide to sell, well before your campaign launches. This gives you time to fix any issues without settlement pressure, since about one in three barriers fail their first inspection.",
+  },
+  {
+    question: "What if my existing Form 23 hasn't expired yet?",
+    answer:
+      "If it's still within its four-year validity and the barrier hasn't changed since it was issued, it can usually be used for the sale. If you've done any landscaping or renovation near the pool since, a fresh inspection is the safer option.",
+  },
+  {
+    question: "Does a standard building and pest inspection cover this?",
+    answer:
+      "No. A buyer's building and pest inspection is a different assessment with a different scope, and it isn't a substitute for the vendor's specific obligation to provide a valid Form 23.",
+  },
+  {
+    question: "What happens if the barrier fails during a sale campaign?",
+    answer:
+      `You'll get a clear list of what needs fixing — usually straightforward items like a gate adjustment or relocating garden features. Your first re-inspection is included free provided it's booked within ${RE_INSPECTION_WINDOW_DAYS} days, so this doesn't need to hold up your campaign if you act on it early.`,
+  },
+  {
+    question: "What if my pool fails the re-inspection too?",
+    answer:
+      "Most properties pass on the second visit once the original issues are fixed. If it doesn't, further re-inspections are charged at our standard re-check rate — worth factoring into your timeline if you're working toward a firm campaign date.",
+  },
+];
+---
+<Layout
+  title={service.metaTitle}
+  description={service.metaDescription}
+  path={`/services/${service.slug}/`}
+  schema={[serviceSchema(service, url)]}
+>
+  <Breadcrumbs items={[{ name: "Services", path: "/services/" }, { name: service.name, path: `/services/${service.slug}/` }]} />
+
+  <div class="mx-auto max-w-6xl px-4 py-10">
+    <h1 class="text-3xl md:text-4xl font-extrabold text-navy-900 mb-4 max-w-3xl">{service.h1}</h1>
+    <p class="text-lg text-navy-600 max-w-2xl mb-8">{service.summary}</p>
+
+    <div class="prose-content max-w-3xl">
+      <p>
+        Selling a property with a pool or spa in Victoria comes with a compliance step a lot of vendors don't
+        discover until it's already creating time pressure — usually when a buyer's conveyancer asks for a current
+        Form 23 partway through a sale. Victorian vendors are required to provide a valid Certificate of Barrier
+        Compliance to the purchaser, and it needs to be current at the time of sale. Sorting this early, rather than
+        reactively, is the difference between a minor task and a genuine settlement risk.
+      </p>
+
+      <h2>Why timing matters more for vendors than owner-occupiers</h2>
+      <p>
+        If you're not selling, a barrier issue found during a routine four-year inspection is simply something to
+        fix on your own timeline. During a live sale campaign, the same issue can hold up progress toward exchange
+        or settlement, particularly if it's discovered late. Since roughly one in three barriers fail their first
+        inspection, treating this as one of the first things you organise — before photos, before your campaign
+        launches — gives you the buffer to fix issues calmly rather than under pressure.
+      </p>
+
+      <h2>What the pre-sale inspection covers</h2>
+      <p>
+        The assessment itself is the same thorough barrier check as any standard inspection: fence and gate height
+        (minimum 1200mm), gaps under and within the fence, the non-climbable zone around the barrier, and gate
+        self-closing and self-latching function. The difference is really about timing and purpose — this inspection
+        is specifically to get you a current, valid Form 23 ready to hand over as part of the sale.
+      </p>
+    </div>
+
+    <CTA
+      heading={`Book your pre-sale inspection — ${PRICE} flat`}
+      subtext="Get your Form 23 sorted before your campaign launches, not during settlement."
+    />
+
+    <div class="prose-content max-w-3xl">
+      <h2>Using an existing Form 23</h2>
+      <p>
+        If your pool already has a current Form 23 within its four-year validity period, and nothing about the
+        barrier has changed since it was issued, it may be usable for the sale without a fresh inspection. If you've
+        renovated, landscaped, or altered anything near the pool since that certificate was issued, it's worth
+        getting a new inspection regardless of remaining validity — those changes are a common source of
+        non-compliance that older paperwork won't reflect.
+      </p>
+
+      <h2>What a buyer's building inspection doesn't cover</h2>
+      <p>
+        Don't assume a clean building and pest report means your barrier is compliant. That inspection has a
+        different scope and generally isn't carried out by a BPC-registered barrier inspector. The vendor's Form 23
+        obligation is separate, and it's yours to arrange regardless of what other inspections a buyer organises
+        independently.
+      </p>
+
+      <h2>Pricing</h2>
+      <p>
+        Pre-sale inspections are charged at the same {PRICE} flat fee as a standard inspection, including your Form
+        23 on a pass. {GUARANTEE_FULL} See our <a href="/pricing/">full pricing breakdown</a>.
+      </p>
+
+      <h2>Related guides</h2>
+      <ul>
+        <li><a href="/guides/selling-house-with-pool-victoria/">Selling a house with a pool in Victoria</a></li>
+        <li><a href="/guides/form-23-certificate-guide/">The complete Form 23 guide</a></li>
+        <li><a href="/guides/what-fails-pool-inspection/">What commonly fails a barrier inspection</a></li>
+      </ul>
+
+      <h2>Available across Melbourne</h2>
+      <p>We arrange pre-sale pool inspections across the metro area, including:</p>
+      <ul class="columns-2 sm:columns-3">
+        {linkedSuburbs.map((s) => (
+          <li><a href={`/locations/${s.slug}/`}>Pre-sale inspections {s.name}</a></li>
+        ))}
+      </ul>
+      <p><a href="/locations/">See all service areas &rarr;</a></p>
+    </div>
+
+    <div id="quote-form" class="max-w-3xl mx-auto my-12">
+      <QuoteForm />
+    </div>
+
+    <div class="max-w-3xl mx-auto">
+      <FAQ faqs={faqs} heading="Frequently asked questions about pre-sale pool inspections" />
+    </div>
+  </div>
+</Layout>

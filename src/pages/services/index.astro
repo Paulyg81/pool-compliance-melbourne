@@ -1,0 +1,33 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Breadcrumbs from "../../components/Breadcrumbs.astro";
+import CTA from "../../components/CTA.astro";
+import { SERVICES, GUARANTEE_SHORT } from "../../config";
+---
+<Layout
+  title="Pool Compliance Services Melbourne | All Services"
+  description="Pool barrier inspections, Form 23 certificates, spa inspections, pre-sale checks, rental compliance and re-inspections across Melbourne. $240 flat."
+  path="/services/"
+>
+  <Breadcrumbs items={[{ name: "Services", path: "/services/" }]} />
+
+  <div class="mx-auto max-w-6xl px-4 py-10">
+    <h1 class="text-3xl md:text-4xl font-extrabold text-navy-900 mb-4">Pool Compliance Services in Melbourne</h1>
+    <p class="text-lg text-navy-600 max-w-2xl mb-10">
+      Every service is delivered by an independent, BPC-registered pool safety inspector, dispatched by us at
+      {GUARANTEE_SHORT.toLowerCase()}.
+    </p>
+
+    <div class="grid sm:grid-cols-2 gap-6 mb-4">
+      {SERVICES.map((s) => (
+        <a href={`/services/${s.slug}/`} class="block rounded-xl border border-navy-100 p-6 hover:border-accent-400 hover:shadow-md transition-all">
+          <h2 class="text-xl font-bold text-navy-900 mb-2">{s.name}</h2>
+          <p class="text-navy-600 text-sm mb-3">{s.summary}</p>
+          <span class="text-accent-600 font-semibold text-sm">Learn more &rarr;</span>
+        </a>
+      ))}
+    </div>
+
+    <CTA />
+  </div>
+</Layout>

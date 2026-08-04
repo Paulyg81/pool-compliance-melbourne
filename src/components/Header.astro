@@ -1,0 +1,93 @@
+---
+import PhoneIcon from "../icons/PhoneIcon.astro";
+import MenuIcon from "../icons/MenuIcon.astro";
+import CloseIcon from "../icons/CloseIcon.astro";
+import ChevronDownIcon from "../icons/ChevronDownIcon.astro";
+import { PHONE_NUMBER, PHONE_NUMBER_TEL, SERVICES } from "../config";
+---
+<header class="sticky top-0 z-40 bg-navy-950 text-white">
+  <div class="mx-auto max-w-6xl px-4">
+    <div class="flex items-center justify-between h-16 lg:h-20">
+      <a href="/" class="flex items-center gap-2 font-bold text-base sm:text-lg leading-tight">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-7 h-7 text-accent-400 shrink-0" aria-hidden="true">
+          <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+          <path d="M9 12l2 2 4-4"></path>
+        </svg>
+        <span>Pool Compliance Melbourne</span>
+      </a>
+
+      <nav class="hidden lg:flex items-center gap-7 text-sm font-medium" aria-label="Primary">
+        <div class="relative group">
+          <button class="flex items-center gap-1 py-7 hover:text-accent-400 transition-colors" aria-haspopup="true">
+            Services <ChevronDownIcon class="w-4 h-4" />
+          </button>
+          <div class="absolute left-0 top-full hidden group-hover:block group-focus-within:block bg-white text-navy-900 rounded-lg shadow-xl py-2 w-72 z-50">
+            {SERVICES.map((s) => (
+              <a href={`/services/${s.slug}/`} class="block px-4 py-2.5 hover:bg-navy-50 hover:text-accent-600">{s.name}</a>
+            ))}
+          </div>
+        </div>
+        <a href="/locations/" class="py-7 hover:text-accent-400 transition-colors">Locations</a>
+        <a href="/guides/" class="py-7 hover:text-accent-400 transition-colors">Guides</a>
+        <a href="/pricing/" class="py-7 hover:text-accent-400 transition-colors">Pricing</a>
+        <a href="/about/" class="py-7 hover:text-accent-400 transition-colors">About</a>
+        <a href="/contact/" class="py-7 hover:text-accent-400 transition-colors">Contact</a>
+      </nav>
+
+      <div class="hidden lg:flex items-center gap-5">
+        <a href={`tel:${PHONE_NUMBER_TEL}`} class="flex items-center gap-2 font-bold text-accent-400 hover:text-accent-300 transition-colors">
+          <PhoneIcon class="w-5 h-5" />
+          {PHONE_NUMBER}
+        </a>
+        <a href="/contact/#quote-form" class="rounded-lg bg-accent-500 hover:bg-accent-600 text-white font-bold px-4 py-2.5 transition-colors">
+          Get a quote
+        </a>
+      </div>
+
+      <button
+        id="mobile-menu-btn"
+        type="button"
+        class="lg:hidden p-2 -mr-2"
+        aria-label="Open menu"
+        aria-expanded="false"
+        aria-controls="mobile-menu"
+      >
+        <span id="menu-open-icon"><MenuIcon class="w-6 h-6" /></span>
+        <span id="menu-close-icon" class="hidden"><CloseIcon class="w-6 h-6" /></span>
+      </button>
+    </div>
+  </div>
+
+  <div id="mobile-menu" class="hidden lg:hidden border-t border-navy-800 bg-navy-950">
+    <nav class="mx-auto max-w-6xl px-4 py-4 flex flex-col gap-1 text-base" aria-label="Mobile">
+      <p class="px-3 pt-2 pb-1 text-xs font-semibold uppercase tracking-wide text-navy-400">Services</p>
+      {SERVICES.map((s) => (
+        <a href={`/services/${s.slug}/`} class="rounded-lg px-3 py-2.5 hover:bg-navy-800">{s.name}</a>
+      ))}
+      <div class="h-px bg-navy-800 my-2"></div>
+      <a href="/locations/" class="rounded-lg px-3 py-2.5 hover:bg-navy-800">Locations</a>
+      <a href="/guides/" class="rounded-lg px-3 py-2.5 hover:bg-navy-800">Guides</a>
+      <a href="/pricing/" class="rounded-lg px-3 py-2.5 hover:bg-navy-800">Pricing</a>
+      <a href="/about/" class="rounded-lg px-3 py-2.5 hover:bg-navy-800">About</a>
+      <a href="/contact/" class="rounded-lg px-3 py-2.5 hover:bg-navy-800">Contact</a>
+      <a href={`tel:${PHONE_NUMBER_TEL}`} class="mt-3 flex items-center justify-center gap-2 rounded-lg bg-accent-500 text-white font-bold px-4 py-3">
+        <PhoneIcon class="w-5 h-5" /> Call {PHONE_NUMBER}
+      </a>
+    </nav>
+  </div>
+</header>
+
+<script>
+  const btn = document.getElementById("mobile-menu-btn");
+  const menu = document.getElementById("mobile-menu");
+  const openIcon = document.getElementById("menu-open-icon");
+  const closeIcon = document.getElementById("menu-close-icon");
+
+  btn?.addEventListener("click", () => {
+    const isHidden = menu?.classList.contains("hidden");
+    menu?.classList.toggle("hidden");
+    openIcon?.classList.toggle("hidden");
+    closeIcon?.classList.toggle("hidden");
+    btn.setAttribute("aria-expanded", String(!!isHidden));
+  });
+</script>

@@ -1,0 +1,156 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Breadcrumbs from "../components/Breadcrumbs.astro";
+import QuoteForm from "../components/QuoteForm.astro";
+import FAQ from "../components/FAQ.astro";
+import CTA from "../components/CTA.astro";
+import CheckIcon from "../icons/CheckIcon.astro";
+import { PRICE, GUARANTEE_FULL, RE_INSPECTION_FEE, RE_INSPECTION_WINDOW_DAYS } from "../config";
+
+const included = [
+  "Full barrier inspection by a BPC-registered inspector",
+  "Form 23 Certificate of Barrier Compliance issued on the spot if you pass",
+  `Your first re-inspection free, if booked within ${RE_INSPECTION_WINDOW_DAYS} days`,
+  "Reminders ahead of your 30-day council lodgement deadline",
+  "Reminders ahead of your four-year renewal date",
+  "Scheduling within 48 hours across greater Melbourne",
+];
+
+const comparison = [
+  {
+    item: "First re-inspection after a failed visit",
+    us: `Free, within ${RE_INSPECTION_WINDOW_DAYS} days`,
+    others: "Often $100–$200 extra call-out fee",
+  },
+  {
+    item: "Further re-inspections",
+    us: `${RE_INSPECTION_FEE} each`,
+    others: "Full call-out fee each time",
+  },
+  {
+    item: "Form 23 certificate issuance",
+    us: "Included",
+    others: "Sometimes billed separately",
+  },
+  {
+    item: "Outer-suburb travel surcharge",
+    us: "None — flat fee everywhere",
+    others: "Common for suburbs further from base",
+  },
+  {
+    item: "Four-year renewal reminders",
+    us: "Included, tracked automatically",
+    others: "Rarely offered",
+  },
+];
+
+const faqs = [
+  {
+    question: `Is ${PRICE} really the final price?`,
+    answer: GUARANTEE_FULL,
+  },
+  {
+    question: "Does the price change for spas or above-ground pools?",
+    answer:
+      "No — the same flat fee applies to spa barrier inspections and above-ground pools, since the assessment process and certification requirements are equivalent to a standard in-ground pool inspection.",
+  },
+  {
+    question: "Are there council fees on top of this?",
+    answer:
+      "Councils may charge a modest, separate registration fee if your pool isn't already registered — that's set by your council, not by us. Lodging your Form 23 with council is free.",
+  },
+  {
+    question: "What if my barrier needs repairs before it can pass?",
+    answer:
+      "Repairs themselves (gate adjustments, fencing work, relocating garden features) are arranged and paid for separately, typically through a handyman or fencing contractor. Our fee covers the inspection and your first re-inspection, not the repair work itself.",
+  },
+  {
+    question: "What if my pool fails the re-inspection too?",
+    answer:
+      `Most fixes pass on the second visit once the original issues are addressed — it's uncommon to fail twice. If it does happen, further re-inspections are ${RE_INSPECTION_FEE} each, and the free re-check only applies if it's booked within ${RE_INSPECTION_WINDOW_DAYS} days of your original inspection.`,
+  },
+];
+---
+<Layout
+  title="Pool Inspection Pricing Melbourne | $240 Flat"
+  description="Transparent pool inspection pricing: $240 flat, Form 23 included, one free re-inspection. See what's included and what others charge extra for."
+  path="/pricing/"
+>
+  <Breadcrumbs items={[{ name: "Pricing", path: "/pricing/" }]} />
+
+  <div class="mx-auto max-w-6xl px-4 py-10">
+    <h1 class="text-3xl md:text-4xl font-extrabold text-navy-900 mb-4">Pool Inspection Pricing — {PRICE} Flat</h1>
+    <p class="text-lg text-navy-600 max-w-2xl mb-10">
+      One price, no surprises. Here's exactly what's included, and how it compares to how some other providers
+      structure their fees.
+    </p>
+
+    <div class="rounded-2xl border-2 border-accent-400 bg-accent-50 p-8 max-w-xl mb-12">
+      <p class="text-sm font-semibold text-accent-700 uppercase tracking-wide mb-1">Standard inspection</p>
+      <p class="text-5xl font-extrabold text-navy-900 mb-6">{PRICE}</p>
+      <ul class="space-y-3">
+        {included.map((item) => (
+          <li class="flex items-start gap-2 text-navy-800">
+            <CheckIcon class="w-5 h-5 text-accent-600 shrink-0 mt-0.5" />
+            <span>{item}</span>
+          </li>
+        ))}
+      </ul>
+    </div>
+
+    <div class="prose-content max-w-3xl">
+      <h2>What other providers sometimes charge extra for</h2>
+      <p>
+        Pool inspection pricing across Melbourne can look similar at a glance and diverge significantly once you
+        factor in what's charged as an add-on. Since roughly one in three barriers fail their first inspection, the
+        re-inspection fee in particular makes a real difference to your total cost.
+      </p>
+    </div>
+
+    <div class="overflow-x-auto max-w-3xl my-8">
+      <table class="w-full text-left border-collapse">
+        <thead>
+          <tr class="border-b-2 border-navy-900">
+            <th class="py-3 pr-4 font-bold text-navy-900">Item</th>
+            <th class="py-3 pr-4 font-bold text-accent-600">Pool Compliance Melbourne</th>
+            <th class="py-3 font-bold text-navy-500">Some other providers</th>
+          </tr>
+        </thead>
+        <tbody>
+          {comparison.map((row) => (
+            <tr class="border-b border-navy-100">
+              <td class="py-3 pr-4 text-navy-800 font-medium">{row.item}</td>
+              <td class="py-3 pr-4 text-navy-800">{row.us}</td>
+              <td class="py-3 text-navy-500">{row.others}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+
+    <div class="prose-content max-w-3xl">
+      <h2>Why your first re-inspection is free</h2>
+      <p>
+        Given how common a first-time fail is, charging a full second call-out fee for what's usually a quick, minor
+        fix doesn't reflect how routine the outcome actually is — most competitors charge for every re-inspection,
+        so one free re-check already puts us ahead of the market. {GUARANTEE_FULL} That {RE_INSPECTION_FEE} fee on
+        further visits isn't about making money on re-checks — it covers the inspector's return trip, and it gives
+        everyone a real incentive to get the fix right the first time rather than treat re-inspections as unlimited.
+      </p>
+      <p>
+        Read more about typical costs and what to check in quotes in our
+        <a href="/guides/pool-inspection-cost-melbourne/">pool inspection cost guide</a>.
+      </p>
+    </div>
+
+    <CTA />
+
+    <div id="quote-form" class="max-w-3xl mx-auto my-12">
+      <QuoteForm />
+    </div>
+
+    <div class="max-w-3xl mx-auto">
+      <FAQ faqs={faqs} heading="Pricing questions" />
+    </div>
+  </div>
+</Layout>

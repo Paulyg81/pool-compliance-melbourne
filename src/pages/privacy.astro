@@ -1,0 +1,119 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Breadcrumbs from "../components/Breadcrumbs.astro";
+import { SITE_NAME, OPERATOR_NAME, EMAIL } from "../config";
+
+const lastUpdated = "23 July 2026";
+---
+<Layout
+  title="Privacy Policy | Pool Compliance Melbourne"
+  description="How Pool Compliance Melbourne, operated by CertCycle, collects, uses and protects your personal information when you book a pool inspection."
+  path="/privacy/"
+>
+  <Breadcrumbs items={[{ name: "Privacy Policy", path: "/privacy/" }]} />
+
+  <div class="mx-auto max-w-3xl px-4 py-10">
+    <h1 class="text-3xl md:text-4xl font-extrabold text-navy-900 mb-2">Privacy Policy</h1>
+    <p class="text-sm text-navy-500 mb-8">Last updated: {lastUpdated}</p>
+
+    <div class="prose-content">
+      <p>
+        {SITE_NAME} is operated by {OPERATOR_NAME} ("we", "us", "our"). This policy explains how we collect, use,
+        store and disclose personal information when you use this website or book a service through us. We handle
+        personal information in accordance with the Australian Privacy Principles under the Privacy Act 1988 (Cth).
+      </p>
+
+      <h2>Information we collect</h2>
+      <p>When you request a quote or make a booking, we typically collect:</p>
+      <ul>
+        <li>Your name and contact phone number.</li>
+        <li>Your property suburb or address.</li>
+        <li>Whether your enquiry relates to a pool or a spa.</li>
+        <li>Your preferred time to be contacted or for an inspection to occur.</li>
+        <li>Any additional details you choose to provide, such as details about your barrier or a specific compliance deadline.</li>
+      </ul>
+      <p>
+        We may also collect standard technical information automatically when you browse this website, such as your
+        general location, browser type, and pages viewed, typically through analytics tools, for the purpose of
+        understanding how our website is used.
+      </p>
+
+      <h2>How we use your information</h2>
+      <ul>
+        <li>To respond to your enquiry and arrange a quote or booking.</li>
+        <li>To coordinate scheduling with an independent, BPC-registered pool safety inspector on your behalf.</li>
+        <li>To send reminders relevant to your booking, such as your 30-day council lodgement deadline and four-year re-inspection renewal date.</li>
+        <li>To communicate with you about your booking, including by phone, SMS or email.</li>
+        <li>To improve our website and services.</li>
+        <li>To meet our legal and regulatory obligations.</li>
+      </ul>
+
+      <h2>Calls may be recorded</h2>
+      <p>
+        Phone calls to our booking line may be recorded for training, quality assurance, and dispute resolution
+        purposes. By calling us, you consent to this recording. If you'd prefer not to be recorded, please let us
+        know at the start of the call and we'll accommodate this where reasonably possible.
+      </p>
+
+      <h2>Who we share your information with</h2>
+      <p>
+        As a booking service, we share relevant booking details — your name, contact number, address, and pool or
+        spa type — with the independent, BPC-registered pool safety inspector arranged to attend your property.
+        This is necessary for the inspector to contact you, attend the correct address, and carry out the
+        inspection.
+      </p>
+      <p>
+        We may also disclose information where required by law, to protect our rights, or to trusted service
+        providers who help us operate this website and business (such as hosting providers, form-processing
+        services, or communications platforms), under obligations to keep it confidential.
+      </p>
+      <p>We do not sell your personal information to third parties.</p>
+
+      <h2>Data storage and security</h2>
+      <p>
+        We take reasonable steps to protect the personal information we hold from misuse, loss, and unauthorised
+        access, using appropriately secured systems and limiting access to personnel and contractors who need it to
+        provide our services.
+      </p>
+
+      <h2>Data retention</h2>
+      <p>
+        We retain booking and contact information for as long as reasonably necessary to provide our services,
+        including tracking your four-year re-inspection cycle, and to meet any legal, accounting or reporting
+        obligations. If you no longer wish us to retain your details, contact us and we will delete or de-identify
+        your information where we're not required to retain it.
+      </p>
+
+      <h2>Access and correction</h2>
+      <p>
+        You can request access to the personal information we hold about you, or ask us to correct it, at any time
+        by contacting us at {EMAIL}. We'll respond to reasonable requests within a reasonable timeframe.
+      </p>
+
+      <h2>Cookies and analytics</h2>
+      <p>
+        This website may use cookies and similar technologies, including third-party analytics tools, to understand
+        how visitors use the site and to improve its performance. You can control or disable cookies through your
+        browser settings, though this may affect some site functionality.
+      </p>
+
+      <h2>Complaints</h2>
+      <p>
+        If you have a concern about how we've handled your personal information, please contact us first at
+        {EMAIL} so we can try to resolve it directly. If you're not satisfied with our response, you can lodge a
+        complaint with the Office of the Australian Information Commissioner (OAIC) at oaic.gov.au.
+      </p>
+
+      <h2>Changes to this policy</h2>
+      <p>
+        We may update this policy from time to time to reflect changes in our practices or legal requirements. The
+        updated version will be posted on this page with a revised "last updated" date.
+      </p>
+
+      <h2>Contact us</h2>
+      <p>
+        For any privacy-related questions or requests, contact us at {EMAIL}.
+      </p>
+    </div>
+  </div>
+</Layout>

@@ -1,0 +1,77 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Breadcrumbs from "../components/Breadcrumbs.astro";
+import CTA from "../components/CTA.astro";
+import { SITE_NAME, OPERATOR_NAME, PRICE } from "../config";
+---
+<Layout
+  title="About Pool Compliance Melbourne | CertCycle"
+  description="Pool Compliance Melbourne is a booking service operated by CertCycle. Learn how we work with independent, BPC-registered pool safety inspectors."
+  path="/about/"
+>
+  <Breadcrumbs items={[{ name: "About", path: "/about/" }]} />
+
+  <div class="mx-auto max-w-3xl px-4 py-10">
+    <h1 class="text-3xl md:text-4xl font-extrabold text-navy-900 mb-6">About {SITE_NAME}</h1>
+
+    <div class="prose-content">
+      <p class="text-lg">
+        {SITE_NAME} is a booking service operated by {OPERATOR_NAME}. All inspections are performed by independent,
+        BPC-registered pool safety inspectors.
+      </p>
+
+      <h2>What that means in practice</h2>
+      <p>
+        We don't employ inspectors directly, and we're not the ones physically checking your fence, gates or
+        non-climbable zone. Instead, we act as the booking layer between pool and spa owners across Melbourne and a
+        network of independent inspectors who each hold their own registration with the Building and Plumbing
+        Commission (BPC), formerly the Victorian Building Authority. When you book with us, we confirm your details,
+        match you with an available registered inspector in your area, and coordinate scheduling — typically within
+        48 hours.
+      </p>
+      <p>
+        This structure exists to make pool compliance simpler for owners, not more complicated. Instead of needing
+        to independently research and vet individual inspectors, confirm their BPC registration, and negotiate
+        pricing suburb by suburb, you get one consistent flat fee ({PRICE}), one clear process, and one point of
+        contact for reminders about your 30-day lodgement deadline and four-year renewal — regardless of which
+        registered inspector actually attends your property.
+      </p>
+
+      <h2>Why the distinction matters</h2>
+      <p>
+        Being upfront about this distinction matters because the Form 23 Certificate of Barrier Compliance is a
+        legal document, and it can only be issued by an inspector who holds the correct BPC registration for pool
+        barrier compliance specifically. We think it's important that owners understand exactly who is assessing
+        their property and under what authority, rather than assuming a booking service and an inspection company
+        are the same thing.
+      </p>
+
+      <h2>What we handle directly</h2>
+      <ul>
+        <li>Taking your booking and confirming your suburb, pool or spa type, and preferred contact time.</li>
+        <li>Coordinating scheduling with an available, BPC-registered inspector in your area.</li>
+        <li>Providing one flat, transparent {PRICE} fee across all of greater Melbourne.</li>
+        <li>Tracking your certificate's 30-day council lodgement deadline and sending you a reminder.</li>
+        <li>Tracking your four-year renewal date and reminding you well ahead of your next required inspection.</li>
+      </ul>
+
+      <h2>What the independent inspector handles</h2>
+      <ul>
+        <li>The physical, on-site barrier assessment — height, gaps, non-climbable zone, and gate function.</li>
+        <li>Issuing your Form 23 Certificate of Barrier Compliance on the day, if your barrier passes.</li>
+        <li>Providing a clear, specific list of any issues if your barrier doesn't pass, so they can be corrected before your free first re-inspection.</li>
+      </ul>
+
+      <h2>Our approach to accuracy</h2>
+      <p>
+        Victorian pool barrier requirements are specific and detailed, and they matter for genuine child safety
+        reasons, not just paperwork compliance. Every guide and page on this site is written to reflect the current,
+        general requirements accurately, and we'd rather state a general principle plainly than invent a specific
+        detail we're not certain of. If you're ever unsure about how a rule applies to your particular property,
+        your inspector is the right person to ask directly during your visit.
+      </p>
+    </div>
+
+    <CTA />
+  </div>
+</Layout>

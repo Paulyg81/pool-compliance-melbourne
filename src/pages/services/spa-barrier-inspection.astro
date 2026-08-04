@@ -1,0 +1,134 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Breadcrumbs from "../../components/Breadcrumbs.astro";
+import QuoteForm from "../../components/QuoteForm.astro";
+import FAQ from "../../components/FAQ.astro";
+import CTA from "../../components/CTA.astro";
+import { serviceSchema } from "../../lib/schema";
+import { SITE_URL, PRICE, SUBURBS, SERVICES, GUARANTEE_FULL } from "../../config";
+
+const service = SERVICES.find((s) => s.slug === "spa-barrier-inspection")!;
+const url = `${SITE_URL}/services/${service.slug}/`;
+const linkedSuburbs = SUBURBS.slice(0, 6).concat(SUBURBS.slice(14, 16));
+
+const faqs = [
+  {
+    question: "Does my spa really need to be inspected like a pool?",
+    answer:
+      "Yes, if it holds more than 300mm of water. Victorian barrier requirements apply based on water depth, not on whether something is officially called a pool or a spa, so most spas — fixed or portable — fall squarely within scope.",
+  },
+  {
+    question: "What about small, portable spas — do they count?",
+    answer:
+      "If a portable spa can hold more than 300mm of water when filled, it needs to be registered and barrier-compliant the same as a fixed spa or pool, regardless of how easily it could be moved or emptied.",
+  },
+  {
+    question: "Can the spa's own walls act as the barrier?",
+    answer:
+      "In some cases, yes — similar to above-ground pools, a spa's rigid walls can form part of the compliance barrier provided they meet the height requirement and don't have a fixed step or ladder giving constant external access.",
+  },
+  {
+    question: "What if my spa is on a deck or elevated area?",
+    answer:
+      "Decking and elevated positioning need to be assessed together with the spa itself, since the surrounding deck rail or barrier needs to meet the same height and non-climbable requirements as a ground-level fence.",
+  },
+  {
+    question: "Do I need a separate Form 23 if I have both a pool and a spa?",
+    answer:
+      "If they share one continuous barrier, a single inspection and Form 23 can often cover both. If the spa has its own separate barrier, it may need its own assessment — your inspector can confirm which applies to your setup.",
+  },
+];
+---
+<Layout
+  title={service.metaTitle}
+  description={service.metaDescription}
+  path={`/services/${service.slug}/`}
+  schema={[serviceSchema(service, url)]}
+>
+  <Breadcrumbs items={[{ name: "Services", path: "/services/" }, { name: service.name, path: `/services/${service.slug}/` }]} />
+
+  <div class="mx-auto max-w-6xl px-4 py-10">
+    <h1 class="text-3xl md:text-4xl font-extrabold text-navy-900 mb-4 max-w-3xl">{service.h1}</h1>
+    <p class="text-lg text-navy-600 max-w-2xl mb-8">{service.summary}</p>
+
+    <div class="prose-content max-w-3xl">
+      <p>
+        Spas are one of the most commonly overlooked parts of Victorian pool safety law. Owners frequently assume
+        that because a spa is smaller than a pool, above-ground, or even inflatable, it must sit outside the barrier
+        compliance rules that apply to a full-size swimming pool. It doesn't. Once a spa holds more than 300mm of
+        water, it's treated the same as a swimming pool for registration and barrier compliance purposes — including
+        the requirement for a Form 23 Certificate of Barrier Compliance and the four-year re-inspection cycle.
+      </p>
+
+      <h2>What counts as a spa under Victorian rules</h2>
+      <p>
+        The rule is based on water depth, not on what the product is marketed as or how permanent it is. That means
+        the requirement can apply to:
+      </p>
+      <ul>
+        <li>Fixed, plumbed-in spas built into decking or paving.</li>
+        <li>Above-ground, freestanding spa pools and plunge pools.</li>
+        <li>Portable or inflatable spas, provided they hold more than 300mm of water when filled.</li>
+        <li>Spas that share a barrier with an adjoining swimming pool.</li>
+      </ul>
+      <p>
+        A common mistake is assuming a spa is exempt because it can be emptied, moved, or packed away. The
+        requirement is about the water depth it's capable of holding in normal use, not about its portability.
+      </p>
+
+      <h2>What a spa barrier inspection checks</h2>
+      <p>
+        The assessment mirrors a standard pool inspection: barrier height (minimum 1200mm), gaps under and within the
+        fence, the non-climbable zone around the barrier's outside face, and gate self-closing and self-latching
+        function. For above-ground and portable spas, we specifically check whether the spa's own rigid wall can
+        serve as part of the barrier, and whether any fixed steps or ladders compromise that by providing constant
+        external access.
+      </p>
+    </div>
+
+    <CTA
+      heading={`Book your spa barrier inspection — ${PRICE} flat`}
+      subtext="Same flat fee and re-inspection guarantee as a full pool inspection."
+    />
+
+    <div class="prose-content max-w-3xl">
+      <h2>Registration and the four-year cycle apply too</h2>
+      <p>
+        Spas need to be registered with the local council the same way pools do, and once certified, the Form 23 is
+        valid for four years before a fresh inspection is required. There's no lighter-touch version of this cycle
+        for spas — the same rules, the same penalties for non-compliance (which can exceed $1,600), and the same
+        30-day lodgement window after a certificate is issued.
+      </p>
+
+      <h2>Pricing</h2>
+      <p>
+        Spa barrier inspections are charged at the same {PRICE} flat fee as a standard pool inspection, including
+        your Form 23 on a pass. {GUARANTEE_FULL} See our full <a href="/pricing/">pricing breakdown</a> for details.
+      </p>
+
+      <h2>Related guides</h2>
+      <ul>
+        <li><a href="/guides/form-23-certificate-guide/">The complete Form 23 guide</a></li>
+        <li><a href="/guides/register-pool-with-council/">How to register a pool or spa with council</a></li>
+        <li><a href="/guides/what-fails-pool-inspection/">What commonly fails a barrier inspection</a></li>
+      </ul>
+
+      <h2>Available across Melbourne</h2>
+      <p>We inspect spa barriers across the metro area, including:</p>
+      <ul class="columns-2 sm:columns-3">
+        {linkedSuburbs.map((s) => (
+          <li><a href={`/locations/${s.slug}/`}>Spa inspections {s.name}</a></li>
+        ))}
+      </ul>
+      <p><a href="/locations/">See all service areas &rarr;</a></p>
+    </div>
+
+    <div id="quote-form" class="max-w-3xl mx-auto my-12">
+      <QuoteForm />
+    </div>
+
+    <div class="max-w-3xl mx-auto">
+      <FAQ faqs={faqs} heading="Frequently asked questions about spa barrier inspections" />
+    </div>
+  </div>
+</Layout>

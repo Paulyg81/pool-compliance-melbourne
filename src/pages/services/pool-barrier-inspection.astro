@@ -1,0 +1,142 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Breadcrumbs from "../../components/Breadcrumbs.astro";
+import QuoteForm from "../../components/QuoteForm.astro";
+import FAQ from "../../components/FAQ.astro";
+import CTA from "../../components/CTA.astro";
+import { serviceSchema } from "../../lib/schema";
+import { SITE_URL, PRICE, SUBURBS, SERVICES, GUARANTEE_SHORT, GUARANTEE_FULL } from "../../config";
+
+const service = SERVICES.find((s) => s.slug === "pool-barrier-inspection")!;
+const url = `${SITE_URL}/services/${service.slug}/`;
+const linkedSuburbs = SUBURBS.slice(0, 8);
+
+const faqs = [
+  {
+    question: "What does a pool barrier inspection actually involve?",
+    answer:
+      "Your inspector physically walks the entire barrier perimeter, measuring fence and gate height at multiple points, checking for gaps under and within the fence, confirming the non-climbable zone is clear, and testing that every gate self-closes and self-latches from any open position.",
+  },
+  {
+    question: "How long does an inspection take?",
+    answer:
+      "Most residential inspections take between 30 and 60 minutes on site, depending on the size and complexity of the barrier. You'll get the outcome — a Form 23 or a list of what needs fixing — before the inspector leaves.",
+  },
+  {
+    question: "Do I need to be home for the inspection?",
+    answer:
+      "It's not strictly required, but we recommend it, since your inspector may need access to gates or side areas, and you'll get the outcome discussed with you directly on the day.",
+  },
+  {
+    question: "What if I've never had my pool inspected before?",
+    answer:
+      "That's a very common starting point. We'll confirm your pool is registered with your local council, then book your first inspection. If it's not yet registered, we can point you to the right process before the visit.",
+  },
+  {
+    question: "Is the inspector actually qualified to issue a Form 23?",
+    answer:
+      "Yes. Every inspection is carried out by an independent inspector registered with the Building and Plumbing Commission (BPC) specifically for pool barrier compliance — not a general building inspector without that registration.",
+  },
+];
+---
+<Layout
+  title={service.metaTitle}
+  description={service.metaDescription}
+  path={`/services/${service.slug}/`}
+  schema={[serviceSchema(service, url)]}
+>
+  <Breadcrumbs items={[{ name: "Services", path: "/services/" }, { name: service.name, path: `/services/${service.slug}/` }]} />
+
+  <div class="mx-auto max-w-6xl px-4 py-10">
+    <h1 class="text-3xl md:text-4xl font-extrabold text-navy-900 mb-4 max-w-3xl">{service.h1}</h1>
+    <p class="text-lg text-navy-600 max-w-2xl mb-8">{service.summary}</p>
+
+    <div class="prose-content max-w-3xl">
+      <p>
+        A pool barrier inspection is the core compliance check every Victorian pool owner needs, whether you're
+        registering a pool for the first time or renewing a certificate that's about to expire on the four-year
+        cycle. It's a physical, on-site assessment of your fence, gates and surrounding barrier zone against the
+        Victorian pool safety standard — not a paperwork review, and not related to your pool's water quality or
+        equipment.
+      </p>
+
+      <h2>What's included in the inspection</h2>
+      <p>
+        Your BPC-registered inspector assesses the barrier as one connected system rather than checking individual
+        parts in isolation. That means:
+      </p>
+      <ul>
+        <li><strong>Height measurement</strong> at multiple points along the fence line — a minimum of 1200mm above ground level, checked at the actual current ground level rather than however it was when installed.</li>
+        <li><strong>Gap checks</strong> under the fence and between vertical pickets, since gaps over 100mm can allow a small child to crawl through or under.</li>
+        <li><strong>Non-climbable zone assessment</strong> — confirming the clear area around the outside of the barrier is free of pot plants, furniture, garden features, or anything else that could serve as a step.</li>
+        <li><strong>Gate testing</strong> — physically opening each gate from multiple positions to confirm it self-closes and self-latches reliably every time, without needing to be pushed shut.</li>
+        <li><strong>Boundary and junction checks</strong> where different fence sections, materials, or a house wall meet, since these transition points are a common source of inconsistency.</li>
+      </ul>
+
+      <h2>Why this inspection matters</h2>
+      <p>
+        Pool barrier compliance in Victoria isn't optional or a one-time formality. Every pool and spa needs to be
+        registered with the local council, and the barrier needs a current Form 23 Certificate of Barrier Compliance
+        — issued initially, then renewed every four years. Non-compliance penalties can exceed $1,600, and an
+        expired or missing certificate can also complicate selling a property, since vendors are required to provide
+        a valid Form 23 as part of the sale.
+      </p>
+      <p>
+        Around one in three barriers fail their first inspection, usually for straightforward, fixable reasons — a
+        gate that doesn't quite self-latch, pot plants positioned too close to the fence, or a barrier height that's
+        dropped slightly below the requirement due to landscaping changes over time. It's a genuinely common outcome,
+        not a sign of anything seriously wrong with your property.
+      </p>
+    </div>
+
+    <CTA
+      heading={`Book your pool barrier inspection — ${PRICE} flat`}
+      subtext={`BPC-registered inspector, Form 23 on the spot if you pass. ${GUARANTEE_SHORT} if you don't.`}
+    />
+
+    <div class="prose-content max-w-3xl">
+      <h2>What happens after the inspection</h2>
+      <p>
+        If your barrier passes, you'll receive your Form 23 Certificate of Barrier Compliance before the inspector
+        leaves. From there, you have 30 days to lodge it with your local council — we send reminders so this
+        deadline doesn't get missed. Your certificate is then valid for four years, and we track that expiry date
+        too, so your next renewal doesn't sneak up on you.
+      </p>
+      <p>
+        If your barrier doesn't pass, you'll get a clear, specific list of what needs fixing. {GUARANTEE_FULL} Read
+        more in our <a href="/services/re-inspection/">re-inspection guide</a>.
+      </p>
+
+      <h2>Pricing</h2>
+      <p>
+        The fee is {PRICE} flat for a standard residential pool barrier inspection, covering the inspection itself,
+        your Form 23 on a pass, and one free re-inspection if needed. See the full breakdown, including what other
+        providers commonly charge as extras, on our <a href="/pricing/">pricing page</a>.
+      </p>
+
+      <h2>Related guides</h2>
+      <ul>
+        <li><a href="/guides/what-fails-pool-inspection/">What fails a pool inspection in Victoria</a></li>
+        <li><a href="/guides/four-year-reinspection-cycle/">The four-year re-inspection cycle explained</a></li>
+        <li><a href="/guides/pool-inspection-cost-melbourne/">How much a Melbourne pool inspection costs</a></li>
+      </ul>
+
+      <h2>Available across Melbourne</h2>
+      <p>We dispatch pool barrier inspectors across the metro area, including:</p>
+      <ul class="columns-2 sm:columns-3">
+        {linkedSuburbs.map((s) => (
+          <li><a href={`/locations/${s.slug}/`}>Pool inspections {s.name}</a></li>
+        ))}
+      </ul>
+      <p><a href="/locations/">See all service areas &rarr;</a></p>
+    </div>
+
+    <div id="quote-form" class="max-w-3xl mx-auto my-12">
+      <QuoteForm />
+    </div>
+
+    <div class="max-w-3xl mx-auto">
+      <FAQ faqs={faqs} heading={`Frequently asked questions about ${service.shortName.toLowerCase()}`} />
+    </div>
+  </div>
+</Layout>

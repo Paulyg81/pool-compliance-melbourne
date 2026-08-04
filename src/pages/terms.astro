@@ -1,0 +1,110 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Breadcrumbs from "../components/Breadcrumbs.astro";
+import { SITE_NAME, OPERATOR_NAME, PRICE, EMAIL, GUARANTEE_FULL, RE_INSPECTION_FEE } from "../config";
+
+const lastUpdated = "23 July 2026";
+---
+<Layout
+  title="Terms of Service | Pool Compliance Melbourne"
+  description="Terms of service for Pool Compliance Melbourne, a booking service operated by CertCycle for independent pool and spa barrier inspections."
+  path="/terms/"
+>
+  <Breadcrumbs items={[{ name: "Terms of Service", path: "/terms/" }]} />
+
+  <div class="mx-auto max-w-3xl px-4 py-10">
+    <h1 class="text-3xl md:text-4xl font-extrabold text-navy-900 mb-2">Terms of Service</h1>
+    <p class="text-sm text-navy-500 mb-8">Last updated: {lastUpdated}</p>
+
+    <div class="prose-content">
+      <p>
+        These terms govern your use of this website and our booking service. By booking through
+        {SITE_NAME}, operated by {OPERATOR_NAME}, you agree to these terms.
+      </p>
+
+      <h2>Our role as a booking service</h2>
+      <p>
+        {SITE_NAME} is a booking service. We are not a pool safety inspection company, and we do not carry out
+        pool or spa barrier inspections ourselves. All inspections are performed by independent, third-party
+        inspectors registered with the Building and Plumbing Commission (BPC) specifically for pool barrier
+        compliance. When you book through us, we arrange and coordinate an inspection with one of these independent
+        inspectors on your behalf.
+      </p>
+
+      <h2>Bookings and pricing</h2>
+      <p>
+        Our standard fee for a residential pool or spa barrier inspection is {PRICE}, inclusive of the inspection
+        and the Form 23 Certificate of Barrier Compliance if your barrier passes. {GUARANTEE_FULL} This free
+        re-inspection applies only where the original inspection was booked through us. Re-inspections following an
+        inspection originally carried out by a different provider, and any re-inspection beyond the first, are
+        charged at {RE_INSPECTION_FEE} (or our standard {PRICE} fee where a different provider carried out the
+        original inspection).
+      </p>
+      <p>
+        Prices are current at the time of publishing and may be updated from time to time. The price confirmed at
+        the time of your booking will apply to that booking.
+      </p>
+
+      <h2>Scheduling</h2>
+      <p>
+        We aim to schedule inspections within 48 hours of booking, subject to inspector availability and reasonable
+        access to your property. Scheduling times are estimates, not guaranteed windows, and may be affected by
+        factors outside our control, including weather and inspector availability.
+      </p>
+
+      <h2>Cancellations and rescheduling</h2>
+      <p>
+        You can cancel or reschedule a booking by contacting us with reasonable notice. Repeated late cancellations
+        or missed appointments without notice may affect our ability to offer future scheduling flexibility.
+      </p>
+
+      <h2>Inspection outcomes</h2>
+      <p>
+        Whether a barrier passes or fails inspection is determined solely by the independent, BPC-registered
+        inspector who attends your property, based on their professional assessment against the applicable
+        Victorian pool and spa barrier standard. We do not influence, guarantee, or have visibility into an
+        inspection outcome in advance of the inspector's assessment.
+      </p>
+
+      <h2>Your responsibilities</h2>
+      <ul>
+        <li>Providing accurate contact and property details when booking.</li>
+        <li>Providing reasonable access to the pool or spa barrier area at the scheduled time.</li>
+        <li>Arranging and paying for any repairs identified as necessary to pass an inspection.</li>
+        <li>Lodging your Form 23 Certificate of Barrier Compliance with your local council within the required 30-day window.</li>
+        <li>Ensuring your pool or spa is registered with your local council, where required.</li>
+      </ul>
+
+      <h2>Limitation of liability</h2>
+      <p>
+        To the maximum extent permitted by law, {OPERATOR_NAME} is not liable for any loss or damage arising from
+        the acts or omissions of independent inspectors, delays in scheduling, or your failure to meet council
+        registration or lodgement obligations. Nothing in these terms excludes, restricts or modifies any consumer
+        guarantee, right or remedy under the Australian Consumer Law that cannot lawfully be excluded.
+      </p>
+
+      <h2>Website use</h2>
+      <p>
+        The content on this website is provided for general information about Victorian pool and spa barrier
+        compliance and is not a substitute for professional advice about your specific property. While we aim to
+        keep information accurate and current, requirements can change, and you should confirm details relevant to
+        your situation with your inspector or local council where it matters.
+      </p>
+
+      <h2>Governing law</h2>
+      <p>
+        These terms are governed by the laws of Victoria, Australia, and any disputes arising from them are subject
+        to the jurisdiction of Victorian courts.
+      </p>
+
+      <h2>Changes to these terms</h2>
+      <p>
+        We may update these terms from time to time. The updated version will be posted on this page with a revised
+        "last updated" date.
+      </p>
+
+      <h2>Contact us</h2>
+      <p>Questions about these terms can be directed to {EMAIL}.</p>
+    </div>
+  </div>
+</Layout>

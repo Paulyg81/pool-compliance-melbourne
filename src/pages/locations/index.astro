@@ -1,0 +1,38 @@
+---
+import { getCollection } from "astro:content";
+import Layout from "../../layouts/Layout.astro";
+import Breadcrumbs from "../../components/Breadcrumbs.astro";
+import CTA from "../../components/CTA.astro";
+import MapPinIcon from "../../icons/MapPinIcon.astro";
+
+const locations = (await getCollection("locations")).sort((a, b) => a.data.name.localeCompare(b.data.name));
+---
+<Layout
+  title="Pool Inspection Service Areas | Melbourne"
+  description="BPC-registered pool barrier inspections across greater Melbourne. Find your suburb for local council and compliance details."
+  path="/locations/"
+>
+  <Breadcrumbs items={[{ name: "Locations", path: "/locations/" }]} />
+
+  <div class="mx-auto max-w-6xl px-4 py-10">
+    <h1 class="text-3xl md:text-4xl font-extrabold text-navy-900 mb-4">Pool Inspection Service Areas</h1>
+    <p class="text-lg text-navy-600 max-w-2xl mb-10">
+      We dispatch BPC-registered pool safety inspectors right across greater Melbourne. Find your suburb below for
+      local council details and common barrier compliance issues in your area.
+    </p>
+
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-4">
+      {locations.map((loc) => (
+        <a href={`/locations/${loc.id}/`} class="flex items-center gap-3 rounded-xl border border-navy-100 px-5 py-4 hover:border-accent-400 hover:shadow-md transition-all">
+          <MapPinIcon class="w-5 h-5 text-accent-500 shrink-0" />
+          <div>
+            <p class="font-bold text-navy-900">{loc.data.name}</p>
+            <p class="text-xs text-navy-500">{loc.data.council}</p>
+          </div>
+        </a>
+      ))}
+    </div>
+
+    <CTA subtext="Can't see your suburb? We cover greater Melbourne — call and we'll confirm we can help." />
+  </div>
+</Layout>

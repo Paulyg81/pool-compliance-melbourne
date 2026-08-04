@@ -1,0 +1,29 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { PHONE_NUMBER, PHONE_NUMBER_TEL } from "../config";
+---
+<Layout
+  title="Page Not Found | Pool Compliance Melbourne"
+  description="The page you're looking for doesn't exist. Find pool inspection services, service areas and guides, or call us directly."
+  path="/404/"
+>
+  <div class="mx-auto max-w-2xl px-4 py-20 text-center">
+    <p class="text-accent-500 font-bold text-lg mb-2">404</p>
+    <h1 class="text-3xl md:text-4xl font-extrabold text-navy-900 mb-4">Page not found</h1>
+    <p class="text-navy-600 mb-8">
+      The page you're looking for doesn't exist or may have moved. Try one of the links below, or call us directly
+      to book an inspection.
+    </p>
+    <div class="flex flex-col sm:flex-row items-center justify-center gap-4 mb-10">
+      <a href="/" class="rounded-lg bg-navy-900 text-white font-bold px-6 py-3">Back to homepage</a>
+      <a href={`tel:${PHONE_NUMBER_TEL}`} class="rounded-lg bg-accent-500 text-white font-bold px-6 py-3">Call {PHONE_NUMBER}</a>
+    </div>
+    <div class="flex flex-wrap justify-center gap-x-6 gap-y-2 text-sm text-navy-600">
+      <a href="/services/" class="hover:text-accent-600 underline">Services</a>
+      <a href="/locations/" class="hover:text-accent-600 underline">Locations</a>
+      <a href="/guides/" class="hover:text-accent-600 underline">Guides</a>
+      <a href="/pricing/" class="hover:text-accent-600 underline">Pricing</a>
+      <a href="/contact/" class="hover:text-accent-600 underline">Contact</a>
+    </div>
+  </div>
+</Layout>

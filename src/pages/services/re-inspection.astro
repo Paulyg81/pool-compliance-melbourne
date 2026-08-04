@@ -1,0 +1,142 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Breadcrumbs from "../../components/Breadcrumbs.astro";
+import QuoteForm from "../../components/QuoteForm.astro";
+import FAQ from "../../components/FAQ.astro";
+import CTA from "../../components/CTA.astro";
+import { serviceSchema } from "../../lib/schema";
+import { SITE_URL, PRICE, SUBURBS, SERVICES, RE_INSPECTION_FEE, RE_INSPECTION_WINDOW_DAYS, GUARANTEE_FULL } from "../../config";
+
+const service = SERVICES.find((s) => s.slug === "re-inspection")!;
+const url = `${SITE_URL}/services/${service.slug}/`;
+const linkedSuburbs = [
+  SUBURBS.find((s) => s.slug === "bentleigh")!,
+  SUBURBS.find((s) => s.slug === "caulfield")!,
+  SUBURBS.find((s) => s.slug === "doncaster")!,
+  SUBURBS.find((s) => s.slug === "templestowe")!,
+  SUBURBS.find((s) => s.slug === "essendon")!,
+  SUBURBS.find((s) => s.slug === "black-rock")!,
+];
+
+const faqs = [
+  {
+    question: "Is the re-inspection really free?",
+    answer:
+      `Your first re-inspection is free, provided it's a follow-up to an inspection you originally booked with us and it's booked within ${RE_INSPECTION_WINDOW_DAYS} days of that original visit. Outside that window, or for any additional re-inspection after that, the standard ${RE_INSPECTION_FEE} re-check fee applies.`,
+  },
+  {
+    question: "How long do I have to fix issues before booking the re-inspection?",
+    answer:
+      `You have ${RE_INSPECTION_WINDOW_DAYS} days from your original inspection to get the identified issues fixed and your free re-inspection booked. We'd still recommend acting promptly — most repairs are quick — but that's the cut-off for the free follow-up to apply.`,
+  },
+  {
+    question: "What if I was inspected by a different provider and failed?",
+    answer:
+      "We can still carry out your re-inspection, though it would be booked as a standard inspection at our usual flat fee rather than a free follow-up, since the original inspection wasn't through us.",
+  },
+  {
+    question: "Do I need to prove the issues have been fixed before booking?",
+    answer:
+      "No — the re-inspection itself is how the fix gets confirmed. Just let us know the original issues have been addressed and we'll book the follow-up visit.",
+  },
+  {
+    question: "What if my pool fails the re-inspection too?",
+    answer:
+      `Most properties pass on the second visit once the original issues are fixed — it's uncommon to fail twice. If it does happen, further re-inspections are ${RE_INSPECTION_FEE} each. Keep in mind the free re-check only applies to your first re-inspection, booked within ${RE_INSPECTION_WINDOW_DAYS} days of the original visit — every visit after that is charged at the standard re-check rate.`,
+  },
+];
+---
+<Layout
+  title={service.metaTitle}
+  description={service.metaDescription}
+  path={`/services/${service.slug}/`}
+  schema={[serviceSchema(service, url)]}
+>
+  <Breadcrumbs items={[{ name: "Services", path: "/services/" }, { name: service.name, path: `/services/${service.slug}/` }]} />
+
+  <div class="mx-auto max-w-6xl px-4 py-10">
+    <h1 class="text-3xl md:text-4xl font-extrabold text-navy-900 mb-4 max-w-3xl">{service.h1}</h1>
+    <p class="text-lg text-navy-600 max-w-2xl mb-8">{service.summary}</p>
+
+    <div class="prose-content max-w-3xl">
+      <p>
+        Failing a pool barrier inspection is a lot more common than most owners expect — around one in three
+        barriers fail on the first visit. It's rarely a sign of anything seriously wrong; it's usually one or two
+        specific, fixable issues that simply need to be corrected before a Form 23 Certificate of Barrier Compliance
+        can be issued. The re-inspection is the follow-up visit that confirms those fixes and gets you across the
+        line.
+      </p>
+
+      <h2>What typically needs fixing before a re-inspection</h2>
+      <p>
+        The most common items we see on a first-inspection report are straightforward: a gate hinge or self-closing
+        spring that needs adjusting so the gate reliably closes and latches from any position; pot plants, furniture
+        or garden features moved back from the non-climbable zone; a gap under the fence backfilled or fitted with
+        infill; or overhanging branches trimmed back from the barrier line. Most of these are quick jobs for a
+        handyperson or fencing contractor, often completed within a day or two.
+      </p>
+
+      <h2>How the re-inspection works</h2>
+      <p>
+        Once the issues from your original report have been addressed, get in touch to book your follow-up visit.
+        Your inspector will specifically check the items identified in the first report, confirm they've been
+        resolved, and reassess the barrier as a whole. If everything now meets the standard, your Form 23 is issued
+        on the spot, the same as a first-time pass.
+      </p>
+    </div>
+
+    <CTA
+      heading="Book your free re-inspection"
+      subtext={GUARANTEE_FULL}
+    />
+
+    <div class="prose-content max-w-3xl">
+      <h2>Why the first re-inspection is included, not charged separately</h2>
+      <p>
+        Since roughly a third of barriers fail their first inspection, charging a full second call-out fee for what
+        is often a very minor fix doesn't reflect how routine this outcome actually is. Our {PRICE} flat fee is
+        structured with that in mind — it covers the original inspection and one free follow-up visit, provided
+        repairs are made and the re-inspection is booked within {RE_INSPECTION_WINDOW_DAYS} days. Further visits
+        after that are charged at {RE_INSPECTION_FEE} each, which covers the inspector's return trip and gives you
+        a real incentive to get the fix right the first time rather than treat re-checks as unlimited.
+      </p>
+
+      <h2>If your first inspection wasn't with us</h2>
+      <p>
+        We can still carry out a re-inspection if a different provider assessed your barrier initially. In that
+        case, it's treated as a standard inspection at our usual {PRICE} flat fee, since the free re-inspection
+        guarantee applies specifically to inspections originally booked through us.
+      </p>
+
+      <h2>Pricing</h2>
+      <p>
+        {GUARANTEE_FULL} Re-inspections following another provider's original inspection are charged at our
+        standard {PRICE} flat rate. See our <a href="/pricing/">full pricing breakdown</a> for more detail.
+      </p>
+
+      <h2>Related guides</h2>
+      <ul>
+        <li><a href="/guides/what-fails-pool-inspection/">What fails a pool inspection in Victoria</a></li>
+        <li><a href="/guides/pool-inspection-cost-melbourne/">How much a Melbourne pool inspection costs</a></li>
+        <li><a href="/guides/four-year-reinspection-cycle/">The four-year re-inspection cycle explained</a></li>
+      </ul>
+
+      <h2>Available across Melbourne</h2>
+      <p>We carry out re-inspections across the metro area, including:</p>
+      <ul class="columns-2 sm:columns-3">
+        {linkedSuburbs.map((s) => (
+          <li><a href={`/locations/${s.slug}/`}>Re-inspections {s.name}</a></li>
+        ))}
+      </ul>
+      <p><a href="/locations/">See all service areas &rarr;</a></p>
+    </div>
+
+    <div id="quote-form" class="max-w-3xl mx-auto my-12">
+      <QuoteForm />
+    </div>
+
+    <div class="max-w-3xl mx-auto">
+      <FAQ faqs={faqs} heading="Frequently asked questions about re-inspections" />
+    </div>
+  </div>
+</Layout>

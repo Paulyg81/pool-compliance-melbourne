@@ -1,0 +1,145 @@
+---
+import { FORM_WEBHOOK_URL, SUBURBS } from "../config";
+
+export interface Props {
+  suburb?: string;
+  heading?: string;
+  subtext?: string;
+}
+const {
+  suburb,
+  heading = "Get a free, no-obligation quote",
+  subtext = "Tell us a bit about your pool or spa and we'll call you back to lock in a time.",
+} = Astro.props;
+---
+<div id="quote-form" class="scroll-mt-24 rounded-2xl border border-navy-100 bg-white shadow-sm p-6 md:p-8">
+  <h2 class="text-2xl font-bold text-navy-900 mb-2">{heading}</h2>
+  <p class="text-navy-600 mb-6">{subtext}</p>
+
+  <form class="quote-form grid grid-cols-1 sm:grid-cols-2 gap-4" data-webhook={FORM_WEBHOOK_URL} novalidate>
+    <div class="sm:col-span-1">
+      <label for="qf-name" class="block text-sm font-medium text-navy-800 mb-1">Full name</label>
+      <input
+        id="qf-name"
+        type="text"
+        name="name"
+        required
+        autocomplete="name"
+        class="w-full rounded-lg border border-navy-200 px-3.5 py-2.5 text-navy-900 focus:border-accent-500 focus:ring-2 focus:ring-accent-100 outline-none"
+      />
+    </div>
+
+    <div class="sm:col-span-1">
+      <label for="qf-phone" class="block text-sm font-medium text-navy-800 mb-1">Phone number</label>
+      <input
+        id="qf-phone"
+        type="tel"
+        name="phone"
+        required
+        autocomplete="tel"
+        class="w-full rounded-lg border border-navy-200 px-3.5 py-2.5 text-navy-900 focus:border-accent-500 focus:ring-2 focus:ring-accent-100 outline-none"
+      />
+    </div>
+
+    <div class="sm:col-span-1">
+      <label for="qf-suburb" class="block text-sm font-medium text-navy-800 mb-1">Suburb</label>
+      <select
+        id="qf-suburb"
+        name="suburb"
+        required
+        class="w-full rounded-lg border border-navy-200 px-3.5 py-2.5 text-navy-900 focus:border-accent-500 focus:ring-2 focus:ring-accent-100 outline-none bg-white"
+      >
+        <option value="">Select your suburb</option>
+        {SUBURBS.map((s) => (
+          <option value={s.name} selected={suburb === s.name}>{s.name}</option>
+        ))}
+        <option value="Other Melbourne suburb">Other Melbourne suburb</option>
+      </select>
+    </div>
+
+    <div class="sm:col-span-1">
+      <label for="qf-contact-time" class="block text-sm font-medium text-navy-800 mb-1">Best time to call</label>
+      <select
+        id="qf-contact-time"
+        name="contactTime"
+        class="w-full rounded-lg border border-navy-200 px-3.5 py-2.5 text-navy-900 focus:border-accent-500 focus:ring-2 focus:ring-accent-100 outline-none bg-white"
+      >
+        <option value="Anytime">Anytime</option>
+        <option value="Morning (7am–11am)">Morning (7am–11am)</option>
+        <option value="Midday (11am–2pm)">Midday (11am–2pm)</option>
+        <option value="Afternoon (2pm–6pm)">Afternoon (2pm–6pm)</option>
+      </select>
+    </div>
+
+    <fieldset class="sm:col-span-2">
+      <legend class="block text-sm font-medium text-navy-800 mb-1">Pool or spa?</legend>
+      <div class="flex gap-6">
+        <label class="inline-flex items-center gap-2 text-navy-800">
+          <input type="radio" name="poolOrSpa" value="Pool" checked class="text-accent-600 focus:ring-accent-500" />
+          Pool
+        </label>
+        <label class="inline-flex items-center gap-2 text-navy-800">
+          <input type="radio" name="poolOrSpa" value="Spa" class="text-accent-600 focus:ring-accent-500" />
+          Spa
+        </label>
+      </div>
+    </fieldset>
+
+    <div class="sm:col-span-2">
+      <button
+        type="submit"
+        class="w-full rounded-lg bg-accent-500 hover:bg-accent-600 disabled:opacity-60 disabled:cursor-not-allowed text-white font-bold px-6 py-3.5 transition-colors"
+      >
+        Get a free quote
+      </button>
+    </div>
+
+    <p class="form-status sm:col-span-2 text-sm" role="status" aria-live="polite"></p>
+  </form>
+</div>
+
+<script>
+  const forms = document.querySelectorAll<HTMLFormElement>("form.quote-form");
+
+  forms.forEach((form) => {
+    form.addEventListener("submit", async (event) => {
+      event.preventDefault();
+
+      const status = form.querySelector<HTMLParagraphElement>(".form-status");
+      const button = form.querySelector<HTMLButtonElement>('button[type="submit"]');
+      const webhook = form.dataset.webhook;
+      if (!webhook || !status || !button) return;
+
+      const formData = new FormData(form);
+      const payload = Object.fromEntries(formData.entries());
+      payload.page = window.location.href;
+      payload.submittedAt = new Date().toISOString();
+
+      const originalLabel = button.textContent ?? "Get a free quote";
+      button.disabled = true;
+      button.textContent = "Sending...";
+      status.textContent = "";
+      status.className = "form-status sm:col-span-2 text-sm";
+
+      try {
+        const response = await fetch(webhook, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(payload),
+        });
+
+        if (!response.ok) throw new Error("Request failed");
+
+        form.reset();
+        status.textContent = "Thanks — we've received your details and will call you shortly to confirm a time.";
+        status.classList.add("text-green-700", "font-medium");
+      } catch (error) {
+        status.textContent = "Something went wrong sending your request. Please call us instead — we're standing by.";
+        status.classList.add("text-red-700", "font-medium");
+      } finally {
+        button.disabled = false;
+        button.textContent = originalLabel;
+      }
+    });
+  });
+</script>

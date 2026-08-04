@@ -1,0 +1,30 @@
+---
+import JsonLd from "./JsonLd.astro";
+import { breadcrumbSchema } from "../lib/schema";
+import { SITE_URL } from "../config";
+
+export interface Props {
+  items: { name: string; path: string }[];
+}
+const { items } = Astro.props;
+
+const withHome = [{ name: "Home", path: "/" }, ...items];
+const schema = breadcrumbSchema(
+  withHome.map((i) => ({ name: i.name, url: `${SITE_URL}${i.path}` }))
+);
+---
+<JsonLd data={schema} />
+<nav aria-label="Breadcrumb" class="bg-navy-50 border-b border-navy-100">
+  <ol class="mx-auto max-w-6xl px-4 py-3 flex flex-wrap items-center gap-1 text-sm text-navy-600">
+    {withHome.map((item, i) => (
+      <li class="flex items-center gap-1">
+        {i > 0 && <span class="text-navy-400" aria-hidden="true">/</span>}
+        {i === withHome.length - 1 ? (
+          <span class="font-medium text-navy-800" aria-current="page">{item.name}</span>
+        ) : (
+          <a href={item.path} class="hover:text-accent-600 hover:underline">{item.name}</a>
+        )}
+      </li>
+    ))}
+  </ol>
+</nav>

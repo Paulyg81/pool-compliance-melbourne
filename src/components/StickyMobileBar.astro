@@ -1,0 +1,26 @@
+---
+import PhoneIcon from "../icons/PhoneIcon.astro";
+import { PHONE_NUMBER, PHONE_NUMBER_TEL } from "../config";
+
+export interface Props {
+  quoteHref?: string;
+}
+const { quoteHref = "#quote-form" } = Astro.props;
+---
+<div class="lg:hidden fixed bottom-0 inset-x-0 z-40 grid grid-cols-2 border-t border-navy-800 bg-navy-950 shadow-[0_-4px_12px_rgba(0,0,0,0.15)]" style="padding-bottom: env(safe-area-inset-bottom);">
+  <a
+    href={`tel:${PHONE_NUMBER_TEL}`}
+    class="flex items-center justify-center gap-2 py-3.5 font-bold text-white border-r border-navy-800"
+    aria-label={`Call ${PHONE_NUMBER}`}
+  >
+    <PhoneIcon class="w-5 h-5" />
+    Call now
+  </a>
+  <a
+    href={quoteHref}
+    class="flex items-center justify-center gap-2 py-3.5 font-bold text-white bg-accent-500"
+  >
+    Get a quote
+  </a>
+</div>
+<div class="lg:hidden h-16" aria-hidden="true"></div>

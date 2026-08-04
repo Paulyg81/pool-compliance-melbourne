@@ -1,0 +1,141 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Breadcrumbs from "../../components/Breadcrumbs.astro";
+import QuoteForm from "../../components/QuoteForm.astro";
+import FAQ from "../../components/FAQ.astro";
+import CTA from "../../components/CTA.astro";
+import { serviceSchema } from "../../lib/schema";
+import { SITE_URL, PRICE, SUBURBS, SERVICES, GUARANTEE_SHORT } from "../../config";
+
+const service = SERVICES.find((s) => s.slug === "form-23-certificate")!;
+const url = `${SITE_URL}/services/${service.slug}/`;
+const linkedSuburbs = SUBURBS.slice(8, 16);
+
+const faqs = [
+  {
+    question: "What exactly is a Form 23?",
+    answer:
+      "It's the Certificate of Barrier Compliance — the official document confirming your pool or spa's safety barrier meets the Victorian standard at the time of inspection. It's issued by a BPC-registered inspector, not a general building surveyor.",
+  },
+  {
+    question: "How long is a Form 23 valid for?",
+    answer:
+      "Four years from the date of issue. After that, your barrier needs a fresh inspection and a new Form 23 to remain compliant, regardless of whether anything about the barrier has changed.",
+  },
+  {
+    question: "What do I do with my Form 23 once I have it?",
+    answer:
+      "You have 30 days to lodge it with your local council. We send a reminder ahead of that deadline so it doesn't get missed, since council needs the certificate on file to confirm your registration is current.",
+  },
+  {
+    question: "Can I get a Form 23 without an inspection?",
+    answer:
+      "No. A Form 23 can only be issued following a physical, on-site assessment of your barrier by a BPC-registered inspector. There's no desktop or remote pathway to certification.",
+  },
+  {
+    question: "Do I need a Form 23 for a spa as well as a pool?",
+    answer:
+      "Yes, if your spa holds more than 300mm of water. It's assessed and certified the same way as a swimming pool barrier under Victorian requirements.",
+  },
+  {
+    question: "I'm selling my house — is my existing Form 23 enough?",
+    answer:
+      "If it's still within its four-year validity period and the barrier hasn't changed since it was issued, it can generally be used for the sale. If you've done any landscaping or renovation work near the pool since, a fresh inspection is the safer option.",
+  },
+];
+---
+<Layout
+  title={service.metaTitle}
+  description={service.metaDescription}
+  path={`/services/${service.slug}/`}
+  schema={[serviceSchema(service, url)]}
+>
+  <Breadcrumbs items={[{ name: "Services", path: "/services/" }, { name: service.name, path: `/services/${service.slug}/` }]} />
+
+  <div class="mx-auto max-w-6xl px-4 py-10">
+    <h1 class="text-3xl md:text-4xl font-extrabold text-navy-900 mb-4 max-w-3xl">{service.h1}</h1>
+    <p class="text-lg text-navy-600 max-w-2xl mb-8">{service.summary}</p>
+
+    <div class="prose-content max-w-3xl">
+      <p>
+        The Form 23 is the single most important piece of paperwork a Victorian pool or spa owner needs. It's the
+        legal record that your barrier — the fence, gates, latches and surrounding clear zone — meets the state's
+        safety standard, and it's required both for initial pool registration and for every four-year renewal after
+        that. Without a current Form 23, your pool is considered non-compliant in council's records, regardless of
+        how solid or well-maintained your fence actually looks.
+      </p>
+
+      <h2>What the Form 23 certifies</h2>
+      <p>
+        A Form 23 confirms that, at the time of inspection, your barrier met every element of the required standard:
+        minimum height of 1200mm, no gaps under or within the fence that would allow a small child through, a clear
+        non-climbable zone around the outside of the barrier, and gates that reliably self-close and self-latch from
+        any position. It doesn't cover anything about your pool's water quality, pump, filtration, or general
+        maintenance — it's specifically and only about the physical barrier.
+      </p>
+
+      <h2>Who can issue a Form 23</h2>
+      <p>
+        Only an inspector registered with the Building and Plumbing Commission (BPC), formerly the Victorian
+        Building Authority, in the specific category covering pool barrier compliance can issue a valid Form 23. Not
+        every building surveyor or general inspector holds this registration, which is why it's worth confirming an
+        inspector's credentials directly if you're arranging one independently rather than through a booking service
+        that already vets this for you.
+      </p>
+    </div>
+
+    <CTA
+      heading={`Get your Form 23 sorted — ${PRICE} flat`}
+      subtext="Includes the inspection and certificate issue on the day if your barrier passes."
+    />
+
+    <div class="prose-content max-w-3xl">
+      <h2>The 30-day lodgement requirement</h2>
+      <p>
+        Once your Form 23 is issued, you have 30 days to lodge it with your local council. This isn't paperwork you
+        can leave sitting in a drawer — council relies on the lodged certificate to confirm your property's ongoing
+        compliance status. Missing this window can trigger follow-up correspondence, and in some cases penalties, so
+        we track this deadline for every booking and send a reminder well before it's due.
+      </p>
+
+      <h2>The four-year renewal cycle</h2>
+      <p>
+        A Form 23 is valid for four years from its issue date, after which a new inspection and a new certificate are
+        required — indefinitely, for as long as the pool or spa exists. This applies uniformly, regardless of the
+        barrier's age, condition, or how long it's gone without an issue. Read our full breakdown in the
+        <a href="/guides/four-year-reinspection-cycle/">four-year cycle guide</a>.
+      </p>
+
+      <h2>Pricing</h2>
+      <p>
+        Our {PRICE} flat fee includes the inspection and your Form 23 Certificate of Barrier Compliance if your
+        barrier passes. {GUARANTEE_SHORT}. See the full <a href="/pricing/">pricing
+        breakdown</a> for what's included and what other providers sometimes charge as extras.
+      </p>
+
+      <h2>Related guides</h2>
+      <ul>
+        <li><a href="/guides/form-23-certificate-guide/">The complete Form 23 guide</a></li>
+        <li><a href="/guides/register-pool-with-council/">How to register your pool with council</a></li>
+        <li><a href="/guides/selling-house-with-pool-victoria/">Selling a house with a pool in Victoria</a></li>
+      </ul>
+
+      <h2>Available across Melbourne</h2>
+      <p>We arrange Form 23 inspections across the metro area, including:</p>
+      <ul class="columns-2 sm:columns-3">
+        {linkedSuburbs.map((s) => (
+          <li><a href={`/locations/${s.slug}/`}>Form 23 {s.name}</a></li>
+        ))}
+      </ul>
+      <p><a href="/locations/">See all service areas &rarr;</a></p>
+    </div>
+
+    <div id="quote-form" class="max-w-3xl mx-auto my-12">
+      <QuoteForm />
+    </div>
+
+    <div class="max-w-3xl mx-auto">
+      <FAQ faqs={faqs} heading="Frequently asked questions about the Form 23" />
+    </div>
+  </div>
+</Layout>

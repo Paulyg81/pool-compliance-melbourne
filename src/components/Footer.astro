@@ -1,0 +1,67 @@
+---
+import PhoneIcon from "../icons/PhoneIcon.astro";
+import MailIcon from "../icons/MailIcon.astro";
+import { PHONE_NUMBER, PHONE_NUMBER_TEL, EMAIL, SITE_NAME, OPERATOR_NAME, ABN, SERVICES, SUBURBS } from "../config";
+
+const year = new Date().getFullYear();
+---
+<footer class="bg-navy-950 text-navy-200 mt-16">
+  <div class="mx-auto max-w-6xl px-4 py-12 grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-5 gap-8">
+    <div class="col-span-2 lg:col-span-2">
+      <p class="text-white font-bold text-lg mb-3">{SITE_NAME}</p>
+      <p class="text-sm leading-relaxed mb-4 max-w-sm">
+        {SITE_NAME} is a booking service operated by {OPERATOR_NAME}. All inspections are performed by
+        independent, BPC-registered pool safety inspectors.
+      </p>
+      <a href={`tel:${PHONE_NUMBER_TEL}`} class="flex items-center gap-2 text-accent-400 font-semibold mb-2 hover:text-accent-300">
+        <PhoneIcon class="w-4 h-4" /> {PHONE_NUMBER}
+      </a>
+      <a href={`mailto:${EMAIL}`} class="flex items-center gap-2 text-navy-300 hover:text-white">
+        <MailIcon class="w-4 h-4" /> {EMAIL}
+      </a>
+      <p class="text-xs text-navy-400 mt-4">ABN {ABN}</p>
+    </div>
+
+    <div>
+      <p class="text-white font-semibold mb-3">Services</p>
+      <ul class="space-y-2 text-sm">
+        {SERVICES.map((s) => (
+          <li><a href={`/services/${s.slug}/`} class="hover:text-white">{s.shortName}</a></li>
+        ))}
+      </ul>
+    </div>
+
+    <div>
+      <p class="text-white font-semibold mb-3">Service areas</p>
+      <ul class="space-y-2 text-sm grid grid-cols-1">
+        {SUBURBS.slice(0, 10).map((s) => (
+          <li><a href={`/locations/${s.slug}/`} class="hover:text-white">{s.name}</a></li>
+        ))}
+      </ul>
+    </div>
+
+    <div>
+      <p class="text-white font-semibold mb-3 lg:invisible lg:hidden">&nbsp;</p>
+      <ul class="space-y-2 text-sm grid grid-cols-1">
+        {SUBURBS.slice(10, 20).map((s) => (
+          <li><a href={`/locations/${s.slug}/`} class="hover:text-white">{s.name}</a></li>
+        ))}
+        <li><a href="/locations/" class="text-accent-400 hover:text-accent-300 font-medium">View all areas &rarr;</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="border-t border-navy-800">
+    <div class="mx-auto max-w-6xl px-4 py-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-navy-400">
+      <p>&copy; {year} {OPERATOR_NAME}. All rights reserved.</p>
+      <nav class="flex flex-wrap items-center justify-center gap-x-5 gap-y-2" aria-label="Legal">
+        <a href="/about/" class="hover:text-white">About</a>
+        <a href="/contact/" class="hover:text-white">Contact</a>
+        <a href="/pricing/" class="hover:text-white">Pricing</a>
+        <a href="/guides/" class="hover:text-white">Guides</a>
+        <a href="/privacy/" class="hover:text-white">Privacy Policy</a>
+        <a href="/terms/" class="hover:text-white">Terms of Service</a>
+      </nav>
+    </div>
+  </div>
+</footer>
