@@ -10,7 +10,7 @@ duplicates a topic and always has a clear next batch to pull from.
 any newly-thought-of topic ideas to the bottom of the queue to keep it from running dry,
 then commit, build, and deploy.
 
-## Published (17)
+## Published (20)
 
 - form-23-certificate-guide — 2025-02-10
 - what-fails-pool-inspection — 2025-02-17
@@ -25,19 +25,22 @@ then commit, build, and deploy.
 - airbnb-short-term-rental-pool-compliance-vic — 2025-04-21
 - how-councils-detect-unregistered-pools — 2025-04-28
 - portable-spa-compliance-victoria — 2025-05-05
+- self-closing-gate-hinges-explained — 2026-08-06
+- glass-pool-fence-compliance-victoria — 2026-08-06
+- child-drowning-statistics-victoria — 2026-08-06
 
 ## Queued (next up, in order)
 
-1. **self-closing-gate-hinges-explained** — deep technical dive specifically on gate hardware: hinge types, spring tension, adjustment, why "closes fine but doesn't latch" happens. Directly targets "pool gate compliance" search intent.
-2. **glass-pool-fence-compliance-victoria** — frameless/semi-frameless glass fencing: panel gaps, spigot height, gate hardware on glass systems, cleaning products that affect compliance signage/visibility (if relevant).
-3. **child-drowning-statistics-victoria** — the safety case for barrier compliance, framed factually and soberly (age groups, seasonal patterns, general prevention research) — supports E-E-A-T without being sensationalist.
-4. **townhouse-shared-pool-compliance** — body corporate / owners corporation pools in multi-dwelling developments: who's responsible, how it differs from a single-title backyard pool.
-5. **pool-fence-during-renovation** — what to do about barrier compliance while landscaping or building work is underway near the pool (temporary barrier obligations).
-6. **manningham-vs-monash-pool-rules** (or similar council-comparison angle) — comparing how neighbouring councils handle registration/enforcement, useful for boundary suburbs.
-7. **diy-pool-fence-compliance-check** — an at-home walkthrough checklist owners can do themselves before booking, expanding on the brief checklist already in what-fails-pool-inspection.
-8. **strata-title-pool-compliance-vic** — similar to townhouse angle but specifically strata/apartment complex shared pools.
-9. **pool-fence-material-comparison** — aluminium vs glass vs timber vs pool-wall-as-barrier, compliance trade-offs of each (not a product review, a compliance-lens comparison).
-10. **council-pool-inspection-vs-independent-inspector** — clarifying that councils generally don't do the compliance inspection themselves, addressing a common owner misconception.
+1. **townhouse-shared-pool-compliance** — body corporate / owners corporation pools in multi-dwelling developments: who's responsible, how it differs from a single-title backyard pool.
+2. **pool-fence-during-renovation** — what to do about barrier compliance while landscaping or building work is underway near the pool (temporary barrier obligations).
+3. **manningham-vs-monash-pool-rules** (or similar council-comparison angle) — comparing how neighbouring councils handle registration/enforcement, useful for boundary suburbs.
+4. **diy-pool-fence-compliance-check** — an at-home walkthrough checklist owners can do themselves before booking, expanding on the brief checklist already in what-fails-pool-inspection.
+5. **strata-title-pool-compliance-vic** — similar to townhouse angle but specifically strata/apartment complex shared pools.
+6. **pool-fence-material-comparison** — aluminium vs glass vs timber vs pool-wall-as-barrier, compliance trade-offs of each (not a product review, a compliance-lens comparison).
+7. **council-pool-inspection-vs-independent-inspector** — clarifying that councils generally don't do the compliance inspection themselves, addressing a common owner misconception.
+
+The queue is down to 7 — the next scheduled run should generate 5-8 more topic ideas
+before continuing, per the rule below.
 
 When this list gets down to ~3 remaining, the next scheduled run should generate 5-8 more
 topic ideas before continuing, prioritising genuine search intent gaps over repetition of
